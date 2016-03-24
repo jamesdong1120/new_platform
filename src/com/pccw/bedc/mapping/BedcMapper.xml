@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BedcMapper">
+<!-- <resultMap id="BaseResultMap" type="com.pccw.system.model.PortalAreaDic">
+   <id column="SEQ_NO" jdbcType="DECIMAL" property="seqNo" />
+   <id column="NAME" jdbcType="VARCHAR" property="name" />
+   <id column="PARENT_ID" jdbcType="DECIMAL" property="parentId" />
+   <id column="STATUS" jdbcType="CHAR" property="status" />
+   <id column="CREATED_BY" jdbcType="DECIMAL" property="createdBy" />
+   <id column="CREATE_DATE" jdbcType="DATE" property="createDate" />
+   <id column="UPDATE_DATE" jdbcType="DATE" property="updateDate" />
+</resultMap> -->
+
+<select id="getConnectPort" resultType="java.lang.Integer">
+	SELECT PRO_VALUE FROM TBL_BEDC_PROPERTIES WHERE ID=1
+</select>
+  
+</mapper> 

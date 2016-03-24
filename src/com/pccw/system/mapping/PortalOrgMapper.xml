@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.system.dao.PortalOrgMapper">
+<resultMap id="BaseResultMap" type="com.pccw.system.model.PortalOrg">
+   <id column="ORG_ID" jdbcType="DECIMAL" property="orgId" />
+   <id column="ORG_FULL_NAME" jdbcType="VARCHAR" property="orgFullName" />
+   <id column="ORG_SHORT_NAME" jdbcType="VARCHAR" property="orgShortName" />
+   <id column="ORG_SORT" jdbcType="DECIMAL" property="orgSort" />
+   <id column="ORG_PARENT" jdbcType="DECIMAL" property="orgParent" />
+   <id column="ORG_STATUS" jdbcType="CHAR" property="orgStatus" />
+   <id column="REMARK" jdbcType="VARCHAR" property="remark" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+   <id column="UPDATED_DATE" jdbcType="DATE" property="updatedDate" />
+   <id column="IS_LEAF" jdbcType="DECIMAL" property="isLeaf" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		ORG_ID, 
+  		ORG_FULL_NAME, 
+  		ORG_SHORT_NAME, 
+  		ORG_SORT, 
+  		ORG_PARENT, 
+  		ORG_STATUS, 
+  		REMARK, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		UPDATED_BY, 
+  		UPDATED_DATE 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.system.model.PortalOrg">
+    DELETE FROM PORTAL_ORG
+    WHERE 
+   		 ORG_ID=#{orgId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into PORTAL_ORG (
+	     ORG_ID,
+	     ORG_FULL_NAME,
+	     ORG_SHORT_NAME,
+	     ORG_SORT,
+	     ORG_PARENT,
+	     ORG_STATUS,
+	     REMARK,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     UPDATED_BY,
+	     UPDATED_DATE
+		   )values (
+		     #{orgId,jdbcType=DECIMAL},
+		     #{orgFullName,jdbcType=VARCHAR},
+		     #{orgShortName,jdbcType=VARCHAR},
+		     #{orgSort,jdbcType=DECIMAL},
+		     #{orgParent,jdbcType=DECIMAL},
+		     #{orgStatus,jdbcType=CHAR},
+		     #{remark,jdbcType=VARCHAR},
+		     #{createdBy,jdbcType=VARCHAR},
+		     #{createdDate,jdbcType=DATE},
+		     #{updatedBy,jdbcType=VARCHAR},
+		     #{updatedDate,jdbcType=DATE}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO PORTAL_ORG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="orgId != null and orgId!=''" >
+      			 ORG_ID,
+      		</if>
+  			<if test="orgFullName != null and orgFullName!=''" >
+      			 ORG_FULL_NAME,
+      		</if>
+  			<if test="orgShortName != null and orgShortName!=''" >
+      			 ORG_SHORT_NAME,
+      		</if>
+  			<if test="orgSort != null and orgSort!=''" >
+      			 ORG_SORT,
+      		</if>
+  			<if test="orgParent != null and orgParent!=''" >
+      			 ORG_PARENT,
+      		</if>
+  			<if test="orgStatus != null and orgStatus!=''" >
+      			 ORG_STATUS,
+      		</if>
+  			<if test="remark != null and remark!=''" >
+      			 REMARK,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="updatedBy != null and updatedBy!=''" >
+      			 UPDATED_BY,
+      		</if>
+  			<if test="updatedDate != null and updatedDate!=''" >
+      			 UPDATED_DATE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="orgId != null and orgId!=''" >
+		    	 #{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgFullName != null and orgFullName!=''" >
+		    	 #{orgFullName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="orgShortName != null and orgShortName!=''" >
+		    	 #{orgShortName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="orgSort != null and orgSort!=''" >
+		    	 #{orgSort,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgParent != null and orgParent!=''" >
+		    	 #{orgParent,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgStatus != null and orgStatus!=''" >
+		    	 #{orgStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="remark != null and remark!=''" >
+		    	 #{remark,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	 #{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	 #{updatedDate,jdbcType=DATE}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PORTAL_ORG
+    WHERE 
+   		 ORG_ID=#{orgId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM (SELECT *
+ 			 FROM PORTAL_ORG M
+ 					START WITH M.ORG_ID = 0
+					CONNECT BY PRIOR M.ORG_ID = M.ORG_PARENT)
+	<where>
+			1=1
+			<if test="orgShortName != null and orgShortName!=''" >
+    			AND ORG_SHORT_NAME LIKE '%${orgShortName}%'	
+   			</if>
+   			<if test="orgStatus != null and orgStatus!=''" >
+    			AND ORG_STATUS = #{orgStatus}	
+   			</if>
+	</where>
+   		 )
+  <where>
+  	1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+   </where> 
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM (SELECT *
+ 			 FROM PORTAL_ORG M
+ 					START WITH M.ORG_ID = 0
+					CONNECT BY PRIOR M.ORG_ID = M.ORG_PARENT)
+	<where>
+			1=1
+			<if test="orgShortName != null and orgShortName!=''" >
+    			AND ORG_SHORT_NAME LIKE '%${orgShortName}%'	
+   			</if>
+   			<if test="orgStatus != null and orgStatus!=''" >
+    			AND ORG_STATUS = #{orgStatus}	
+   			</if>
+	</where>
+    
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE PORTAL_ORG
+    <set >
+    		<if test="orgId != null and orgId!=''" >
+		    	ORG_ID=#{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgFullName != null and orgFullName!=''" >
+		    	ORG_FULL_NAME=#{orgFullName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="orgShortName != null and orgShortName!=''" >
+		    	ORG_SHORT_NAME=#{orgShortName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="orgSort != null and orgSort!=''" >
+		    	ORG_SORT=#{orgSort,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgParent != null and orgParent!=''" >
+		    	ORG_PARENT=#{orgParent,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgStatus != null and orgStatus!=''" >
+		    	ORG_STATUS=#{orgStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="remark != null and remark!=''" >
+		    	REMARK=#{remark,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 ORG_ID=#{orgId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE PORTAL_ORG
+    <set >
+    		<if test="orgId != null and orgId!=''" >
+		    	ORG_ID=#{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgFullName != null and orgFullName!=''" >
+		    	ORG_FULL_NAME=#{orgFullName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="orgShortName != null and orgShortName!=''" >
+		    	ORG_SHORT_NAME=#{orgShortName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="orgSort != null and orgSort!=''" >
+		    	ORG_SORT=#{orgSort,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgParent != null and orgParent!=''" >
+		    	ORG_PARENT=#{orgParent,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgStatus != null and orgStatus!=''" >
+		    	ORG_STATUS=#{orgStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="remark != null and remark!=''" >
+		    	REMARK=#{remark,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 ORG_ID=#{orgId,jdbcType=DECIMAL} 
+  </update>
+  
+  
+  <select id="getChildOrgs" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />,
+		 (SELECT COUNT(1) FROM PORTAL_ORG Y WHERE Y.ORG_PARENT=T.ORG_ID ) IS_LEAF
+		FROM PORTAL_ORG T
+		WHERE
+		ORG_PARENT=#{orgParent,jdbcType=DECIMAL}
+		ORDER BY ORG_SORT
+	</select>
+	
+	<select id="getEffectChildOrgs" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />,
+		(SELECT COUNT(1) FROM PORTAL_ORG Y WHERE Y.ORG_PARENT=T.ORG_ID ) IS_LEAF
+		FROM PORTAL_ORG T
+		WHERE 
+		ORG_PARENT=#{orgParent,jdbcType=DECIMAL}
+		AND ORG_STATUS='1'
+		ORDER BY ORG_SORT
+	</select>
+
+	<select id="getMaxOrgSort" parameterType="map" resultType="java.lang.Integer">
+		SELECT nvl(max(ORG_SORT),0) FROM PORTAL_ORG t where
+		t.ORG_PARENT=${orgParent}
+	</select>
+
+	<update id="updateOrgSortMinusByRecursion" parameterType="map">
+		update PORTAL_ORG set ORG_SORT=(ORG_SORT-1)
+		where  ORG_PARENT=${orgParent} 
+	 <if test="targetNodeSort != null and targetNodeSort!=''">
+	 		<![CDATA[and ORG_SORT<=${targetNodeSort}]]>
+	 </if>
+	  <if test="nodeSort != null and nodeSort!=''">
+	  		<![CDATA[ and ORG_SORT>=${nodeSort}]]>
+	  </if>
+	</update>
+	
+	<update id="updateOrgSortPlusByRecursion" parameterType="map">
+		update PORTAL_ORG set ORG_SORT=(ORG_SORT+1)
+		where  ORG_PARENT=${orgParent} 
+		 <if test="targetNodeSort != null and targetNodeSort!=''">
+			and ORG_SORT>=${targetNodeSort} 
+		</if>
+		<if test="nodeSort != null and nodeSort!=''">
+		 <![CDATA[and ORG_SORT<=${nodeSort}]]>
+		</if>
+	</update>
+  
+</mapper> 

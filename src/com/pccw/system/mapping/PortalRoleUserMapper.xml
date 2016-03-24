@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.system.dao.PortalRoleUserMapper">
+<resultMap id="BaseResultMap" type="com.pccw.system.model.PortalRoleUser">
+   <id column="SEQ_NO" jdbcType="DECIMAL" property="seqNo" />
+   <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
+   <id column="ROLE_ID" jdbcType="DECIMAL" property="roleId" />
+   <id column="STATUS" jdbcType="CHAR" property="status" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+   <id column="UPDATED_DATE" jdbcType="DATE" property="updatedDate" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		SEQ_NO, 
+  		USER_ID, 
+  		ROLE_ID, 
+  		STATUS, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		UPDATED_BY, 
+  		UPDATED_DATE 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.system.model.PortalRoleUser">
+    DELETE FROM PORTAL_ROLE_USER
+    WHERE 
+   		 SEQ_NO=#{seqNo,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into PORTAL_ROLE_USER (
+	     SEQ_NO,
+	     USER_ID,
+	     ROLE_ID,
+	     STATUS,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     UPDATED_BY,
+	     UPDATED_DATE
+		   )values (
+		     #{seqNo,jdbcType=DECIMAL},
+		     #{userId,jdbcType=DECIMAL},
+		     #{roleId,jdbcType=DECIMAL},
+		     #{status,jdbcType=CHAR},
+		     #{createdBy,jdbcType=VARCHAR},
+		     #{createdDate,jdbcType=DATE},
+		     #{updatedBy,jdbcType=VARCHAR},
+		     #{updatedDate,jdbcType=DATE}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO PORTAL_ROLE_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="seqNo != null and seqNo!=''" >
+      			 SEQ_NO,
+      		</if>
+  			<if test="userId != null and userId!=''" >
+      			 USER_ID,
+      		</if>
+  			<if test="roleId != null and roleId!=''" >
+      			 ROLE_ID,
+      		</if>
+  			<if test="status != null and status!=''" >
+      			 STATUS,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="updatedBy != null and updatedBy!=''" >
+      			 UPDATED_BY,
+      		</if>
+  			<if test="updatedDate != null and updatedDate!=''" >
+      			 UPDATED_DATE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="seqNo != null and seqNo!=''" >
+		    	 #{seqNo,jdbcType=DECIMAL},
+		     </if>
+    		<if test="userId != null and userId!=''" >
+		    	 #{userId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="roleId != null and roleId!=''" >
+		    	 #{roleId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="status != null and status!=''" >
+		    	 #{status,jdbcType=CHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	 #{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	 #{updatedDate,jdbcType=DATE}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PORTAL_ROLE_USER
+    WHERE 
+   		 SEQ_NO=#{seqNo,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM PORTAL_ROLE_USER
+    WHERE 1=1
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM PORTAL_ROLE_USER
+    WHERE 1=1
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE PORTAL_ROLE_USER
+    <set >
+    		<if test="seqNo != null and seqNo!=''" >
+		    	SEQ_NO=#{seqNo,jdbcType=DECIMAL},
+		     </if>
+    		<if test="userId != null and userId!=''" >
+		    	USER_ID=#{userId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="roleId != null and roleId!=''" >
+		    	ROLE_ID=#{roleId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="status != null and status!=''" >
+		    	STATUS=#{status,jdbcType=CHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 SEQ_NO=#{seqNo,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE PORTAL_ROLE_USER
+    <set >
+    		<if test="seqNo != null and seqNo!=''" >
+		    	SEQ_NO=#{seqNo,jdbcType=DECIMAL},
+		     </if>
+    		<if test="userId != null and userId!=''" >
+		    	USER_ID=#{userId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="roleId != null and roleId!=''" >
+		    	ROLE_ID=#{roleId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="status != null and status!=''" >
+		    	STATUS=#{status,jdbcType=CHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 SEQ_NO=#{seqNo,jdbcType=DECIMAL} 
+  </update>
+  
+  <delete id="removeUserRole" parameterType="com.pccw.system.model.PortalRoleUser" >
+  		DELETE FROM PORTAL_ROLE_USER WHERE USER_ID=${userId} AND ROLE_ID=${roleId}
+  </delete>
+  
+  <delete id="removeUsers" parameterType="map">
+  	    DELETE FROM PORTAL_ROLE_USER WHERE USER_ID=${userId}
+  </delete>
+  
+   <delete id="removeRoles" parameterType="map">
+  	    DELETE FROM PORTAL_ROLE_USER WHERE ROLE_ID=${roleId}
+  </delete>
+  
+</mapper> 

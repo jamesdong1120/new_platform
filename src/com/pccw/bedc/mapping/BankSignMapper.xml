@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BankSignMapper">
+
+<resultMap id="BaseResultMap" type="com.pccw.bedc.model.BciBankSignInfo">
+   <id column="SIGN_ID" jdbcType="DECIMAL" property="signId" />
+   <id column="SIGN_ADDRESS" jdbcType="VARCHAR" property="signAddress" />
+   <id column="SIGN_PORT" jdbcType="DECIMAL" property="signPort" />
+   <id column="SIGN_DESC" jdbcType="VARCHAR" property="signDesc" />
+   <id column="SIGN_TIME_OUT" jdbcType="DECIMAL" property="signTimeOut" />
+   <id column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="LAST_UPDATED_BY" jdbcType="VARCHAR" property="lastUpdatedBy" />
+   <id column="LAST_UPDATED_DATE" jdbcType="DATE" property="lastUpdatedDate" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		SIGN_ID, 
+  		SIGN_ADDRESS, 
+  		SIGN_PORT, 
+  		SIGN_DESC, 
+  		SIGN_TIME_OUT, 
+  		BANK_CODE, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE 
+  </sql>
+
+<select id="getNeedSignBankCodes" resultMap="BaseResultMap">
+SELECT t1.SIGN_ID,
+       t1.SIGN_ADDRESS,
+       t1.SIGN_PORT,
+       t1.SIGN_DESC,
+       t1.SIGN_TIME_OUT,
+       t1.BANK_CODE,
+       t1.CREATED_BY,
+       t1.CREATED_DATE,
+       t1.LAST_UPDATED_BY,
+       t1.LAST_UPDATED_DATE
+  FROM BCI_BANK_SIGN_INFO T1, BCI_BANK T2
+ WHERE T1.BANK_CODE = T2.BANKCODE
+   AND T2.SIGNFLAG = 'Y'
+</select>
+  
+</mapper> 

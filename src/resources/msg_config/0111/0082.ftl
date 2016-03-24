@@ -1,0 +1,9 @@
+<trnCode>qryDtl</trnCode>
+--body--
+<trnid>${m.s.queryKey}</trnid>
+<acntNo>${d.BEDC_QUERY_ACCNO}</acntNo>
+<dateFrom>${m.date.fmt('yyyy-MM-dd')}</dateFrom>
+<dateTo>${m.date.fmt('yyyy-MM-dd')}</dateTo>
+<startNo>${d.BEDC_SYSTEM_Q_BEGINNUM}</startNo>
+<endNo>${d.BEDC_SYSTEM_Q_ENDNUM}</endNo>
+<typeCode>0</typeCode>

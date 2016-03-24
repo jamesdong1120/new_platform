@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.system.dao.PortalUserMapper">
+<resultMap id="BaseResultMap" type="com.pccw.system.model.PortalUser">
+   <id column="USER_ID" jdbcType="DECIMAL" property="userId" />
+   <id column="USER_CN_NAME" jdbcType="VARCHAR" property="userCnName" />
+   <id column="USER_LOGIN_NAME" jdbcType="VARCHAR" property="userLoginName" />
+   <id column="USER_LOGIN_PWD" jdbcType="VARCHAR" property="userLoginPwd" />
+   <id column="USER_JOB_TITLE" jdbcType="VARCHAR" property="userJobTitle" />
+   <id column="USER_STATUS" jdbcType="CHAR" property="userStatus" />
+   <id column="REMARK" jdbcType="VARCHAR" property="remark" />
+   <id column="DEPT_ID" jdbcType="DECIMAL" property="deptId" />
+   <id column="ORG_ID" jdbcType="DECIMAL" property="orgId" />
+   <id column="CREATED_BY" jdbcType="DECIMAL" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+   <id column="UPDATED_DATE" jdbcType="DATE" property="updatedDate" />
+   <id column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+   <id column="ORG_SHORT_NAME" jdbcType="VARCHAR" property="orgShortName" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		USER_ID, 
+  		USER_CN_NAME, 
+  		USER_LOGIN_NAME, 
+  		USER_LOGIN_PWD, 
+  		USER_JOB_TITLE, 
+  		USER_STATUS, 
+  		REMARK, 
+  		DEPT_ID, 
+  		DEPT_NAME,
+  		ORG_ID,
+  		ORG_SHORT_NAME, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		UPDATED_BY, 
+  		UPDATED_DATE 
+  </sql>
+  
+  <sql id="Page_Column_List">
+  	   T1.USER_ID,
+       T1.USER_CN_NAME,
+       T1.USER_LOGIN_NAME,
+       T1.USER_LOGIN_PWD,
+       T1.USER_JOB_TITLE,
+       T1.USER_STATUS,
+       T1.REMARK,
+       T1.DEPT_ID,
+       T3.DEPT_NAME,
+       T1.ORG_ID,
+       T2.ORG_SHORT_NAME,
+       T1.CREATED_BY,
+       T1.CREATED_DATE,
+       T1.UPDATED_BY,
+       T1.UPDATED_DATE
+  
+  
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.system.model.PortalUser">
+    DELETE FROM PORTAL_USER
+    WHERE 
+   		 USER_ID=#{userId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into PORTAL_USER (
+	     USER_ID,
+	     USER_CN_NAME,
+	     USER_LOGIN_NAME,
+	     USER_LOGIN_PWD,
+	     USER_JOB_TITLE,
+	     USER_STATUS,
+	     REMARK,
+	     DEPT_ID,
+	     ORG_ID,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     UPDATED_BY,
+	     UPDATED_DATE
+		   )values (
+		     #{userId,jdbcType=DECIMAL},
+		     #{userCnName,jdbcType=VARCHAR},
+		     #{userLoginName,jdbcType=VARCHAR},
+		     #{userLoginPwd,jdbcType=VARCHAR},
+		     #{userJobTitle,jdbcType=VARCHAR},
+		     #{userStatus,jdbcType=CHAR},
+		     #{remark,jdbcType=VARCHAR},
+		     #{deptId,jdbcType=DECIMAL},
+		     #{orgId,jdbcType=DECIMAL},
+		     #{createdBy,jdbcType=DECIMAL},
+		     #{createdDate,jdbcType=DATE},
+		     #{updatedBy,jdbcType=VARCHAR},
+		     #{updatedDate,jdbcType=DATE}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO PORTAL_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="userId != null and userId!=''" >
+      			 USER_ID,
+      		</if>
+  			<if test="userCnName != null and userCnName!=''" >
+      			 USER_CN_NAME,
+      		</if>
+  			<if test="userLoginName != null and userLoginName!=''" >
+      			 USER_LOGIN_NAME,
+      		</if>
+  			<if test="userLoginPwd != null and userLoginPwd!=''" >
+      			 USER_LOGIN_PWD,
+      		</if>
+  			<if test="userJobTitle != null and userJobTitle!=''" >
+      			 USER_JOB_TITLE,
+      		</if>
+  			<if test="userStatus != null and userStatus!=''" >
+      			 USER_STATUS,
+      		</if>
+  			<if test="remark != null and remark!=''" >
+      			 REMARK,
+      		</if>
+  			<if test="deptId != null and deptId!=''" >
+      			 DEPT_ID,
+      		</if>
+  			<if test="orgId != null and orgId!=''" >
+      			 ORG_ID,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="updatedBy != null and updatedBy!=''" >
+      			 UPDATED_BY,
+      		</if>
+  			<if test="updatedDate != null and updatedDate!=''" >
+      			 UPDATED_DATE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="userId != null and userId!=''" >
+		    	 #{userId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="userCnName != null and userCnName!=''" >
+		    	 #{userCnName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userLoginName != null and userLoginName!=''" >
+		    	 #{userLoginName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userLoginPwd != null and userLoginPwd!=''" >
+		    	 #{userLoginPwd,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userJobTitle != null and userJobTitle!=''" >
+		    	 #{userJobTitle,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userStatus != null and userStatus!=''" >
+		    	 #{userStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="remark != null and remark!=''" >
+		    	 #{remark,jdbcType=VARCHAR},
+		     </if>
+    		<if test="deptId != null and deptId!=''" >
+		    	 #{deptId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgId != null and orgId!=''" >
+		    	 #{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	 #{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	 #{updatedDate,jdbcType=DATE}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PORTAL_USER
+    WHERE 
+   		 USER_ID=#{userId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Page_Column_List" />
+    ,ROWNUM RN
+    FROM PORTAL_USER T1, PORTAL_ORG T2, PORTAL_DEPT T3
+ 	WHERE T1.ORG_ID = T2.ORG_ID
+    AND T2.ORG_ID = T3.ORG_ID
+    AND T1.DEPT_ID = T3.DEPT_ID
+   <if test="userStatus != null and userStatus!=''" >
+     AND T1.USER_STATUS=#{userStatus}
+   </if>
+   
+    <if test="userCnName != null and userCnName!=''" >
+     AND T1.USER_CN_NAME=#{userCnName}
+    </if>
+    ) 
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+ 	SELECT 
+	    COUNT(1)
+    FROM PORTAL_USER T1, PORTAL_ORG T2, PORTAL_DEPT T3
+ 	WHERE T1.ORG_ID = T2.ORG_ID
+    AND T2.ORG_ID = T3.ORG_ID
+    AND T1.DEPT_ID = T3.DEPT_ID
+   <if test="userStatus != null and userStatus!=''" >
+     AND T1.USER_STATUS=#{userStatus}
+   </if>
+    <if test="userCnName != null and userCnName!=''" >
+     AND T1.USER_CN_NAME=#{userCnName}
+    </if>
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE PORTAL_USER
+    <set >
+    		<if test="userId != null and userId!=''" >
+		    	USER_ID=#{userId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="userCnName != null and userCnName!=''" >
+		    	USER_CN_NAME=#{userCnName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userLoginName != null and userLoginName!=''" >
+		    	USER_LOGIN_NAME=#{userLoginName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userLoginPwd != null and userLoginPwd!=''" >
+		    	USER_LOGIN_PWD=#{userLoginPwd,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userJobTitle != null and userJobTitle!=''" >
+		    	USER_JOB_TITLE=#{userJobTitle,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userStatus != null and userStatus!=''" >
+		    	USER_STATUS=#{userStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="remark != null and remark!=''" >
+		    	REMARK=#{remark,jdbcType=VARCHAR},
+		     </if>
+    		<if test="deptId != null and deptId!=''" >
+		    	DEPT_ID=#{deptId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgId != null and orgId!=''" >
+		    	ORG_ID=#{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 USER_ID=#{userId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE PORTAL_USER
+    <set >
+    		<if test="userId != null and userId!=''" >
+		    	USER_ID=#{userId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="userCnName != null and userCnName!=''" >
+		    	USER_CN_NAME=#{userCnName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userLoginName != null and userLoginName!=''" >
+		    	USER_LOGIN_NAME=#{userLoginName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userLoginPwd != null and userLoginPwd!=''" >
+		    	USER_LOGIN_PWD=#{userLoginPwd,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userJobTitle != null and userJobTitle!=''" >
+		    	USER_JOB_TITLE=#{userJobTitle,jdbcType=VARCHAR},
+		     </if>
+    		<if test="userStatus != null and userStatus!=''" >
+		    	USER_STATUS=#{userStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="remark != null and remark!=''" >
+		    	REMARK=#{remark,jdbcType=VARCHAR},
+		     </if>
+    		<if test="deptId != null and deptId!=''" >
+		    	DEPT_ID=#{deptId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgId != null and orgId!=''" >
+		    	ORG_ID=#{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 USER_ID=#{userId,jdbcType=DECIMAL} 
+  </update>
+  
+  <select id="validateUser" parameterType="map" resultType="int">
+  	SELECT COUNT(1) FROM PORTAL_USER  T WHERE T.USER_LOGIN_NAME=#{userLoginName} AND T.USER_LOGIN_PWD=#{userLoginPwd}
+  
+  </select>
+  
+</mapper> 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>	
+	
+
+	
+	<methods>
+		<money>moneyUtil</money>
+		<ccy>ccyUtil</ccy>		
+		<branch>branchUtil2</branch>
+		<area>areaUtil2</area>
+		<date>dateUtil</date>
+		<s>sequenceUtil</s>
+	</methods>
+
+	
+</config>

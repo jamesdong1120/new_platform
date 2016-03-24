@@ -1,0 +1,19 @@
+<trnCode>Xfer</trnCode>
+--body--
+<trnId>${d.TRANNO}</trnId>
+<cltcookie></cltcookie>
+<insId>${d.TRANNO}</insId>
+<acntNo>${d.ACCNO}</acntNo>
+<acntName>${d.ACCNAME}</acntName>
+<acntToNo>${d.OPPACCNO}</acntToNo>
+<acntToName>${d.OPPNAME}</acntToName>
+<externBank>${d.BANK_FLAG}</externBank>
+<localFlag><#if d.URGFLAG == "2" >1<#else><#if d.URGFLAG=="1">0<#else>${d.AREA_FLAG}</#if></#if></localFlag>
+<rcvCustType></rcvCustType>
+<bankCode>${d.BRANCHNO}</bankCode>
+<bankName>${d.BRANCHNAME}</bankName>
+<bankAddr></bankAddr>
+<areaCode></areaCode>
+<amount>${m.money.fmt2(d.AMOUNT)}</amount>
+<explain>${d.BPURPOSE}</explain>
+<actDate>${m.date.fmt('yyyy-MM-dd')}</actDate>

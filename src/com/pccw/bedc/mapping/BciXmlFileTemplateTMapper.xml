@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BciXmlFileTemplateTMapper">
+<resultMap id="BaseResultMap" type="com.pccw.bedc.model.BciXmlFileTemplateT">
+   <id column="TEMPLATE_ID" jdbcType="DECIMAL" property="templateId" />
+   <id column="TEMPLATE_CLOB" jdbcType="CLOB" property="templateClob" />
+   <id column="TEMPLATE_VERSION" jdbcType="VARCHAR" property="templateVersion" />
+   <id column="CREATE_BY" jdbcType="DECIMAL" property="createBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="LAST_UPDATED_BY" jdbcType="DECIMAL" property="lastUpdatedBy" />
+   <id column="LAST_UPDATED_DATE" jdbcType="DATE" property="lastUpdatedDate" />
+   <id column="HEAD_CONFIG_ID" jdbcType="DECIMAL" property="headConfigId" />
+   <id column="BODY_CONFIG_ID" jdbcType="DECIMAL" property="bodyConfigId" />
+   <id column="TRAN_CODE" jdbcType="VARCHAR" property="tranCode" />
+   <id column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		TEMPLATE_ID, 
+  		TEMPLATE_CLOB, 
+  		TEMPLATE_VERSION, 
+  		CREATE_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE, 
+  		HEAD_CONFIG_ID, 
+  		BODY_CONFIG_ID, 
+  		TRAN_CODE, 
+  		BANK_CODE 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.bedc.model.BciXmlFileTemplateT">
+    DELETE FROM BCI_XML_FILE_TEMPLATE_T
+    WHERE 
+   		 TEMPLATE_ID=#{templateId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into BCI_XML_FILE_TEMPLATE_T (
+	     TEMPLATE_ID,
+	     TEMPLATE_CLOB,
+	     TEMPLATE_VERSION,
+	     CREATE_BY,
+	     CREATED_DATE,
+	     LAST_UPDATED_BY,
+	     LAST_UPDATED_DATE,
+	     HEAD_CONFIG_ID,
+	     BODY_CONFIG_ID,
+	     TRAN_CODE,
+	     BANK_CODE
+		   )values (
+		     #{templateId,jdbcType=DECIMAL},
+		     #{templateClob,jdbcType=CLOB},
+		     #{templateVersion,jdbcType=VARCHAR},
+		     #{createBy,jdbcType=DECIMAL},
+		     #{createdDate,jdbcType=DATE},
+		     #{lastUpdatedBy,jdbcType=DECIMAL},
+		     #{lastUpdatedDate,jdbcType=DATE},
+		     #{headConfigId,jdbcType=DECIMAL},
+		     #{bodyConfigId,jdbcType=DECIMAL},
+		     #{tranCode,jdbcType=VARCHAR},
+		     #{bankCode,jdbcType=VARCHAR}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO BCI_XML_FILE_TEMPLATE_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="templateId != null and templateId!=''" >
+      			 TEMPLATE_ID,
+      		</if>
+  			<if test="templateClob != null and templateClob!=''" >
+      			 TEMPLATE_CLOB,
+      		</if>
+  			<if test="templateVersion != null and templateVersion!=''" >
+      			 TEMPLATE_VERSION,
+      		</if>
+  			<if test="createBy != null and createBy!=''" >
+      			 CREATE_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+      			 LAST_UPDATED_BY,
+      		</if>
+  			<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+      			 LAST_UPDATED_DATE,
+      		</if>
+  			<if test="headConfigId != null and headConfigId!=''" >
+      			 HEAD_CONFIG_ID,
+      		</if>
+  			<if test="bodyConfigId != null and bodyConfigId!=''" >
+      			 BODY_CONFIG_ID,
+      		</if>
+  			<if test="tranCode != null and tranCode!=''" >
+      			 TRAN_CODE,
+      		</if>
+  			<if test="bankCode != null and bankCode!=''" >
+      			 BANK_CODE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="templateId != null and templateId!=''" >
+		    	 #{templateId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="templateClob != null and templateClob!=''" >
+		    	 #{templateClob,jdbcType=CLOB},
+		     </if>
+    		<if test="templateVersion != null and templateVersion!=''" >
+		    	 #{templateVersion,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createBy != null and createBy!=''" >
+		    	 #{createBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	 #{lastUpdatedBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	 #{lastUpdatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="headConfigId != null and headConfigId!=''" >
+		    	 #{headConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="bodyConfigId != null and bodyConfigId!=''" >
+		    	 #{bodyConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="tranCode != null and tranCode!=''" >
+		    	 #{tranCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	 #{bankCode,jdbcType=VARCHAR}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_XML_FILE_TEMPLATE_T
+    WHERE 
+   		 TEMPLATE_ID=#{templateId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+  		TEMPLATE_ID, 
+  		TEMPLATE_VERSION, 
+  		CREATE_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE, 
+  		HEAD_CONFIG_ID, 
+  		BODY_CONFIG_ID, 
+  		TRAN_CODE, 
+  		BANK_CODE 
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM BCI_XML_FILE_TEMPLATE_T
+    WHERE 1=1
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM BCI_XML_FILE_TEMPLATE_T
+    WHERE 1=1
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE BCI_XML_FILE_TEMPLATE_T
+    <set >
+    		<if test="templateId != null and templateId!=''" >
+		    	TEMPLATE_ID=#{templateId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="templateClob != null and templateClob!=''" >
+		    	TEMPLATE_CLOB=#{templateClob,jdbcType=CLOB},
+		     </if>
+    		<if test="templateVersion != null and templateVersion!=''" >
+		    	TEMPLATE_VERSION=#{templateVersion,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createBy != null and createBy!=''" >
+		    	CREATE_BY=#{createBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="headConfigId != null and headConfigId!=''" >
+		    	HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="bodyConfigId != null and bodyConfigId!=''" >
+		    	BODY_CONFIG_ID=#{bodyConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="tranCode != null and tranCode!=''" >
+		    	TRAN_CODE=#{tranCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	BANK_CODE=#{bankCode,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 TEMPLATE_ID=#{templateId,jdbcType=DECIMAL} 
+   		 and TEMPLATE_ID=#{templateId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE BCI_XML_FILE_TEMPLATE_T
+    <set >
+    		<if test="templateId != null and templateId!=''" >
+		    	TEMPLATE_ID=#{templateId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="templateClob != null and templateClob!=''" >
+		    	TEMPLATE_CLOB=#{templateClob,jdbcType=CLOB},
+		     </if>
+    		<if test="templateVersion != null and templateVersion!=''" >
+		    	TEMPLATE_VERSION=#{templateVersion,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createBy != null and createBy!=''" >
+		    	CREATE_BY=#{createBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="headConfigId != null and headConfigId!=''" >
+		    	HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="bodyConfigId != null and bodyConfigId!=''" >
+		    	BODY_CONFIG_ID=#{bodyConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="tranCode != null and tranCode!=''" >
+		    	TRAN_CODE=#{tranCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	BANK_CODE=#{bankCode,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 TEMPLATE_ID=#{templateId,jdbcType=DECIMAL} 
+   		 and TEMPLATE_ID=#{templateId,jdbcType=DECIMAL} 
+  </update>
+  
+  <select id="getBankTranTemple" resultMap="BaseResultMap" parameterType="map">
+  	 SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_XML_FILE_TEMPLATE_T
+    WHERE 
+   		 TRAN_CODE=#{tranCode,jdbcType=VARCHAR}
+   	AND  BANK_CODE=#{bankCode,jdbcType=VARCHAR}
+  
+  </select>
+  
+</mapper> 

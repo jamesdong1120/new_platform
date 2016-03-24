@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.system.dao.PortalDeptMapper">
+<resultMap id="BaseResultMap" type="com.pccw.system.model.PortalDept">
+   <id column="DEPT_ID" jdbcType="DECIMAL" property="deptId" />
+   <id column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+   <id column="DEPT_PARENT" jdbcType="DECIMAL" property="deptParent" />
+   <id column="DEPT_STATUS" jdbcType="CHAR" property="deptStatus" />
+   <id column="DEPT_SORT" jdbcType="DECIMAL" property="deptSort" />
+   <id column="ORG_ID" jdbcType="DECIMAL" property="orgId" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="UPDATED_DATE" jdbcType="DATE" property="updatedDate" />
+   <id column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+   <id column="IS_LEAF" jdbcType="DECIMAL" property="isLeaf" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		DEPT_ID, 
+  		DEPT_NAME, 
+  		DEPT_PARENT, 
+  		DEPT_STATUS, 
+  		DEPT_SORT, 
+  		ORG_ID, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		UPDATED_DATE, 
+  		UPDATED_BY 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.system.model.PortalDept">
+    DELETE FROM PORTAL_DEPT
+    WHERE 
+   		 DEPT_ID=#{deptId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into PORTAL_DEPT (
+	     DEPT_ID,
+	     DEPT_NAME,
+	     DEPT_PARENT,
+	     DEPT_STATUS,
+	     DEPT_SORT,
+	     ORG_ID,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     UPDATED_DATE,
+	     UPDATED_BY
+		   )values (
+		     #{deptId,jdbcType=DECIMAL},
+		     #{deptName,jdbcType=VARCHAR},
+		     #{deptParent,jdbcType=DECIMAL},
+		     #{deptStatus,jdbcType=CHAR},
+		     #{deptSort,jdbcType=DECIMAL},
+		     #{orgId,jdbcType=DECIMAL},
+		     #{createdBy,jdbcType=VARCHAR},
+		     #{createdDate,jdbcType=DATE},
+		     #{updatedDate,jdbcType=DATE},
+		     #{updatedBy,jdbcType=VARCHAR}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO PORTAL_DEPT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="deptId != null and deptId!=''" >
+      			 DEPT_ID,
+      		</if>
+  			<if test="deptName != null and deptName!=''" >
+      			 DEPT_NAME,
+      		</if>
+  			<if test="deptParent != null and deptParent!=''" >
+      			 DEPT_PARENT,
+      		</if>
+  			<if test="deptStatus != null and deptStatus!=''" >
+      			 DEPT_STATUS,
+      		</if>
+  			<if test="deptSort != null and deptSort!=''" >
+      			 DEPT_SORT,
+      		</if>
+  			<if test="orgId != null and orgId!=''" >
+      			 ORG_ID,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="updatedDate != null and updatedDate!=''" >
+      			 UPDATED_DATE,
+      		</if>
+  			<if test="updatedBy != null and updatedBy!=''" >
+      			 UPDATED_BY
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="deptId != null and deptId!=''" >
+		    	 #{deptId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="deptName != null and deptName!=''" >
+		    	 #{deptName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="deptParent != null and deptParent!=''" >
+		    	 #{deptParent,jdbcType=DECIMAL},
+		     </if>
+    		<if test="deptStatus != null and deptStatus!=''" >
+		    	 #{deptStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="deptSort != null and deptSort!=''" >
+		    	 #{deptSort,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgId != null and orgId!=''" >
+		    	 #{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	 #{updatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	 #{updatedBy,jdbcType=VARCHAR}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM PORTAL_DEPT
+    WHERE 
+   		 DEPT_ID=#{deptId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM (SELECT *
+  FROM PORTAL_DEPT M
+ START WITH M.DEPT_ID = 0
+CONNECT BY PRIOR M.DEPT_ID = M.DEPT_PARENT)
+<where>
+	1=1
+	 <if test="orgId != null and orgId!=''" >
+    		AND ORG_ID=${orgId}
+   		</if>
+   		 <if test="deptName!= null and deptName!=''" >
+    		AND DEPT_NAME LIKE '%${deptName}%'
+   		</if>
+   		<if test="deptStatus!= null and deptStatus!=''" >
+    		AND DEPT_STATUS=#{deptStatus}
+   		</if>
+</where>
+    )
+   <where>
+   	1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND  RN<=${end}]]>
+   </if>
+    </where>
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  		SELECT 
+   COUNT(1)
+    FROM (SELECT *
+  FROM PORTAL_DEPT M
+ START WITH M.DEPT_ID = 0
+CONNECT BY PRIOR M.DEPT_ID = M.DEPT_PARENT)
+<where>
+	1=1
+	 <if test="orgId != null and orgId!=''" >
+    		AND ORG_ID=${orgId}
+   		</if>
+   		 <if test="deptName!= null and deptName!=''" >
+    		AND DEPT_NAME LIKE '%${deptName}%'
+   		</if>
+   		<if test="deptStatus!= null and deptStatus!=''" >
+    		AND DEPT_STATUS=#{deptStatus}
+   		</if>
+</where>
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE PORTAL_DEPT
+    <set >
+    		<if test="deptId != null and deptId!=''" >
+		    	DEPT_ID=#{deptId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="deptName != null and deptName!=''" >
+		    	DEPT_NAME=#{deptName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="deptParent != null and deptParent!=''" >
+		    	DEPT_PARENT=#{deptParent,jdbcType=DECIMAL},
+		     </if>
+    		<if test="deptStatus != null and deptStatus!=''" >
+		    	DEPT_STATUS=#{deptStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="deptSort != null and deptSort!=''" >
+		    	DEPT_SORT=#{deptSort,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgId != null and orgId!=''" >
+		    	ORG_ID=#{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 DEPT_ID=#{deptId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE PORTAL_DEPT
+    <set >
+    		<if test="deptId != null and deptId!=''" >
+		    	DEPT_ID=#{deptId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="deptName != null and deptName!=''" >
+		    	DEPT_NAME=#{deptName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="deptParent != null and deptParent!=''" >
+		    	DEPT_PARENT=#{deptParent,jdbcType=DECIMAL},
+		     </if>
+    		<if test="deptStatus != null and deptStatus!=''" >
+		    	DEPT_STATUS=#{deptStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="deptSort != null and deptSort!=''" >
+		    	DEPT_SORT=#{deptSort,jdbcType=DECIMAL},
+		     </if>
+    		<if test="orgId != null and orgId!=''" >
+		    	ORG_ID=#{orgId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 DEPT_ID=#{deptId,jdbcType=DECIMAL} 
+  </update>
+  
+  
+  
+  <select id="getChildDepts" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />,
+		(SELECT COUNT(1) FROM PORTAL_DEPT Y WHERE Y.DEPT_PARENT=T.DEPT_ID AND ORG_ID=#{orgId2,jdbcType=DECIMAL}) IS_LEAF
+		FROM PORTAL_DEPT T
+		WHERE
+		DEPT_PARENT=#{deptParent,jdbcType=DECIMAL}
+		AND ORG_ID=#{orgId,jdbcType=DECIMAL}
+		ORDER BY DEPT_SORT
+	</select>
+	
+	<select id="getEffectChildDepts" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />,
+		(SELECT COUNT(1) FROM PORTAL_DEPT Y WHERE Y.DEPT_PARENT=T.DEPT_ID AND ORG_ID=#{orgId2,jdbcType=DECIMAL}) IS_LEAF
+		FROM PORTAL_DEPT T
+		WHERE 
+		DEPT_PARENT=#{deptParent,jdbcType=DECIMAL}
+		AND ORG_ID=#{orgId,jdbcType=DECIMAL}
+		AND DEPT_STATUS='1'
+		ORDER BY DEPT_SORT
+	</select>
+
+	<select id="getMaxDeptSort" parameterType="map" resultType="java.lang.Integer">
+		SELECT nvl(max(DEPT_SORT),0) FROM PORTAL_DEPT t where
+		t.DEPT_PARENT=${deptParent}
+		AND t.ORG_ID=${orgId}
+	</select>
+
+	<update id="updateDeptSortMinusByRecursion" parameterType="map">
+		update PORTAL_DEPT set DEPT_SORT=(DEPT_SORT-1)
+		where  DEPT_PARENT=${deptParent} 
+		and ORG_ID=${orgId}
+	 <if test="targetNodeSort != null and targetNodeSort!=''">
+	 		<![CDATA[and DEPT_SORT<=${targetNodeSort}]]>
+	 </if>
+	  <if test="nodeSort != null and nodeSort!=''">
+	  		<![CDATA[ and DEPT_SORT>=${nodeSort}]]>
+	  </if>
+	</update>
+	
+	<update id="updateDeptSortPlusByRecursion" parameterType="map">
+		update PORTAL_DEPT set DEPT_SORT=(DEPT_SORT+1)
+		where  DEPT_PARENT=${deptParent} 
+		and ORG_ID=${orgId}
+		 <if test="targetNodeSort != null and targetNodeSort!=''">
+			and DEPT_SORT>=${targetNodeSort} 
+		</if>
+		<if test="nodeSort != null and nodeSort!=''">
+		 <![CDATA[and DEPT_SORT<=${nodeSort}]]>
+		</if>
+	</update>
+</mapper> 

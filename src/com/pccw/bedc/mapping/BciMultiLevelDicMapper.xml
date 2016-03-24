@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BciMultiLevelDicMapper">
+<resultMap id="BaseResultMap" type="com.pccw.bedc.model.BciMultiLevelDic">
+   <id column="DIC_ID" jdbcType="DECIMAL" property="dicId" />
+   <id column="DIC_CODE" jdbcType="VARCHAR" property="dicCode" />
+   <id column="DIC_VALUE" jdbcType="VARCHAR" property="dicValue" />
+   <id column="PARENT_DIC_ID" jdbcType="VARCHAR" property="parentDicId" />
+   <id column="DIC_STATUS" jdbcType="CHAR" property="dicStatus" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+   <id column="UPDATED_DATE" jdbcType="DATE" property="updatedDate" />
+   <id column="IS_LEAF" jdbcType="DECIMAL" property="isLeaf" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		DIC_ID, 
+  		DIC_CODE, 
+  		DIC_VALUE, 
+  		PARENT_DIC_ID, 
+  		DIC_STATUS, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		UPDATED_BY, 
+  		UPDATED_DATE 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.bedc.model.BciMultiLevelDic">
+    DELETE FROM BCI_MULTI_LEVEL_DIC
+    WHERE 
+   		 DIC_ID=#{dicId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into BCI_MULTI_LEVEL_DIC (
+	     DIC_ID,
+	     DIC_CODE,
+	     DIC_VALUE,
+	     PARENT_DIC_ID,
+	     DIC_STATUS,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     UPDATED_BY,
+	     UPDATED_DATE
+		   )values (
+		     #{dicId,jdbcType=DECIMAL},
+		     #{dicCode,jdbcType=VARCHAR},
+		     #{dicValue,jdbcType=VARCHAR},
+		     #{parentDicId,jdbcType=VARCHAR},
+		     #{dicStatus,jdbcType=CHAR},
+		     #{createdBy,jdbcType=VARCHAR},
+		     #{createdDate,jdbcType=DATE},
+		     #{updatedBy,jdbcType=VARCHAR},
+		     #{updatedDate,jdbcType=DATE}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO BCI_MULTI_LEVEL_DIC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="dicId != null and dicId!=''" >
+      			 DIC_ID,
+      		</if>
+  			<if test="dicCode != null and dicCode!=''" >
+      			 DIC_CODE,
+      		</if>
+  			<if test="dicValue != null and dicValue!=''" >
+      			 DIC_VALUE,
+      		</if>
+  			<if test="parentDicId != null and parentDicId!=''" >
+      			 PARENT_DIC_ID,
+      		</if>
+  			<if test="dicStatus != null and dicStatus!=''" >
+      			 DIC_STATUS,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="updatedBy != null and updatedBy!=''" >
+      			 UPDATED_BY,
+      		</if>
+  			<if test="updatedDate != null and updatedDate!=''" >
+      			 UPDATED_DATE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="dicId != null and dicId!=''" >
+		    	 #{dicId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dicCode != null and dicCode!=''" >
+		    	 #{dicCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="dicValue != null and dicValue!=''" >
+		    	 #{dicValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="parentDicId != null and parentDicId!=''" >
+		    	 #{parentDicId,jdbcType=VARCHAR},
+		     </if>
+    		<if test="dicStatus != null and dicStatus!=''" >
+		    	 #{dicStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	 #{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	 #{updatedDate,jdbcType=DATE}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_MULTI_LEVEL_DIC
+    WHERE 
+   		 DIC_ID=#{dicId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM BCI_MULTI_LEVEL_DIC
+    WHERE 1=1
+    <if test="dicValue != null and dicValue!=''" >
+		  AND  	DIC_VALUE like '%${dicValue}%'
+	</if>
+	<if test="dicCode != null and dicCode!=''" >
+		 AND DIC_CODE=#{dicCode}
+	</if>
+	
+	<if test="dicStatus != null and dicStatus!=''" >
+		 AND DIC_STATUS=#{dicStatus}
+	</if>
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM BCI_MULTI_LEVEL_DIC
+    WHERE 1=1
+    	<if test="dicValue != null and dicValue!=''" >
+		  AND  	DIC_VALUE like '%${dicValue}%'
+	</if>
+	<if test="dicCode != null and dicCode!=''" >
+		 AND DIC_CODE=#{dicCode}
+	</if>
+	<if test="dicStatus != null and dicStatus!=''" >
+		 AND DIC_STATUS=#{dicStatus}
+	</if>
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE BCI_MULTI_LEVEL_DIC
+    <set >
+    		<if test="dicId != null and dicId!=''" >
+		    	DIC_ID=#{dicId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dicCode != null and dicCode!=''" >
+		    	DIC_CODE=#{dicCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="dicValue != null and dicValue!=''" >
+		    	DIC_VALUE=#{dicValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="parentDicId != null and parentDicId!=''" >
+		    	PARENT_DIC_ID=#{parentDicId,jdbcType=VARCHAR},
+		     </if>
+    		<if test="dicStatus != null and dicStatus!=''" >
+		    	DIC_STATUS=#{dicStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 DIC_ID=#{dicId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE BCI_MULTI_LEVEL_DIC
+    <set >
+    		<if test="dicId != null and dicId!=''" >
+		    	DIC_ID=#{dicId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dicCode != null and dicCode!=''" >
+		    	DIC_CODE=#{dicCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="dicValue != null and dicValue!=''" >
+		    	DIC_VALUE=#{dicValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="parentDicId != null and parentDicId!=''" >
+		    	PARENT_DIC_ID=#{parentDicId,jdbcType=VARCHAR},
+		     </if>
+    		<if test="dicStatus != null and dicStatus!=''" >
+		    	DIC_STATUS=#{dicStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="updatedBy != null and updatedBy!=''" >
+		    	UPDATED_BY=#{updatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedDate != null and updatedDate!=''" >
+		    	UPDATED_DATE=#{updatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 DIC_ID=#{dicId,jdbcType=DECIMAL} 
+  </update>
+  
+  <select id="getAllData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+  	<include refid="Base_Column_List" />
+  	FROM
+  	BCI_MULTI_LEVEL_DIC
+  	WHERE
+  	1=1
+  	<if test="dicValue != null and dicValue!=''" >
+		  AND  	DIC_VALUE like '%${dicValue}%'
+	</if>
+	<if test="dicCode != null and dicCode!=''" >
+		 AND DIC_CODE=#{dicCode}
+	</if>
+  	
+  </select>
+  
+  <select id="getEffectChildDic" parameterType="map" resultMap="BaseResultMap">
+  		SELECT 
+  	<include refid="Base_Column_List" />,
+  	(SELECT COUNT(1) FROM BCI_MULTI_LEVEL_DIC Y WHERE Y.PARENT_DIC_ID=T.DIC_CODE ) IS_LEAF
+  	FROM
+  	BCI_MULTI_LEVEL_DIC T
+  	WHERE PARENT_DIC_ID=#{parentDicId}
+  	AND DIC_STATUS='1'
+  	
+  
+  </select>
+  
+</mapper> 

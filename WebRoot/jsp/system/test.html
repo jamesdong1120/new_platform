@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.fontClass{
+font-family:"Microsoft YaHei",Arial,sans-serif;
+font-size: 12px;
+}
+.button {
+   border-radius:4px;
+   -webkit-border-radius: 4px;
+   background-color: #E8E8E8;
+   width: 65px;
+   height:22px;
+   margin-left: 90px;
+   
+} 
+#main{
+	font-family:"Microsoft YaHei",Arial,sans-serif
+}
+#data{
+	font-size: 12px;
+}
+
+#table td{
+	width:85px;
+}
+#box div{
+	margin-top: 10px;
+}
+
+</style>
+
+</head>
+<body>
+<div id="main" style="height:100%;width:100%">
+	<div id="title" style="font-size:14px;font-weight: bold;height:20px;width:1020px;margin-left: auto;margin-right: auto; ">
+		交易明细
+	</div>
+	
+	<div id="box" style="height:230px;width:1020px;border:1px solid #eee;margin-left: auto;margin-right: auto;">
+		<div style="margin-left: auto;margin-right: auto;border:1px solid white; height:230px;width:600px;">
+				<div>
+					<label class="fontClass">*&nbsp;请选择账户&nbsp;:&nbsp;</label>
+					<select class="fontClass" style="width: 348px;">
+						<option>长城电子借记卡&nbsp;&nbsp;6217******5244&nbsp;&nbsp;长城电子借记卡&nbsp;&nbsp;上海</option>
+					</select>
+				</div>
+				
+				<div>
+					<label class="fontClass">*&nbsp;请选择币种&nbsp;:&nbsp;</label>
+					<select class="fontClass" style="width: 150px;color: #545454;">
+						<option>人民币元</option>
+					</select>
+				</div>
+				
+				<div>
+					<label class="fontClass">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;钞/汇&nbsp;:&nbsp;</label>
+					<input type="radio"/><font class="fontClass" style="color: #545454;">现钞</font>
+					<input type="radio"/><font class="fontClass" style="color: #545454;">现汇</font>
+				</div>
+				
+				<div>
+					<label class="fontClass">&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;起止日期&nbsp;:&nbsp;</label>
+					<input id="d1" type="text" value="2016-02-29" style="width: 100px"></input>  
+					-
+					<input id="d2" type="text" value="2016-02-29" style="width: 100px"></input>  
+
+				</div>
+				
+				<div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a class="fontClass" style="color: #006599;text-decoration: none;">最近一周 &nbsp;&nbsp;</a><font class="fontClass">|</font>
+					<a class="fontClass" style="color: #006599;text-decoration: none;">最近一个月&nbsp;&nbsp;</a><font class="fontClass">|</font>
+					<a class="fontClass" style="color: #006599;text-decoration: none;">&nbsp;&nbsp;最近三个月</a>
+
+				</div>
+				
+				<div>
+					<div class="button" style="text-align: center"><font class="fontClass" color="black">查询</font></div>
+
+				</div>
+		
+		</div>
+	
+	</div>
+	
+	<div id="data" style="height:200px;width:1020px;border:1px solid #eee;margin-left: auto;margin-right: auto;">
+		<table style="width: 100%;height:60px;" id="table">
+			<tr style="background: #EFF2F6;height: 25px;">
+			<td>交易日期</td>
+			<td>业务摘要</td>
+			<td>对方账户名称</td>
+			<td>对方账户账号</td>
+			<td>币种</td>
+			<td>钞/汇</td>
+			<td>收入金额</td>
+			<td>支出金额</td>
+			<td>余额</td>
+			<td>交易渠道/场所</td>
+			<td>附言</td>
+			<tr>
+			<tr style="height: 25px;">
+			<td>2016/02/29</td>
+			<td>学费</td>
+			<td>上海交通大学</td>
+			<td>4546******0319</td>
+			<td>人民币元</td>
+			<td>-</td>
+			<td></td>
+			<td>4,500.00</td>
+			<td>267.67</td>
+			<td>柜台/中国银行...</td>
+			<td></td>
+			</tr>
+			<tr style="height: 25px;">
+			<td>2016/02/29</td>
+			<td>网上支付</td>
+			<td>严幼东</td>
+			<td>6225******8773</td>
+			<td>人民币元</td>
+			<td>-</td>
+			<td>4,500.00</td>
+			<td></td>
+			<td>4,767.67</td>
+			<td>网上银行</td>
+			<td></td>
+			</tr>
+		</table>
+	
+	</div>
+
+
+</div>
+
+</body>
+</html>

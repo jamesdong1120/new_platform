@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BciBankMapper">
+<resultMap id="BaseResultMap" type="com.pccw.bedc.model.BciBank">
+   <id column="BANK_ID" jdbcType="DECIMAL" property="bankId" />
+   <id column="BANKCODE" jdbcType="VARCHAR" property="bankcode" />
+   <id column="SHORTNAME" jdbcType="VARCHAR" property="shortname" />
+   <id column="FULLNAME" jdbcType="VARCHAR" property="fullname" />
+   <id column="CORPCODE" jdbcType="VARCHAR" property="corpcode" />
+   <id column="BANKACC" jdbcType="VARCHAR" property="bankacc" />
+   <id column="INNERACC" jdbcType="VARCHAR" property="inneracc" />
+   <id column="BRANCHID" jdbcType="VARCHAR" property="branchid" />
+   <id column="AREACODE" jdbcType="VARCHAR" property="areacode" />
+   <id column="TECHPHONE" jdbcType="VARCHAR" property="techphone" />
+   <id column="BIZPHONE" jdbcType="VARCHAR" property="bizphone" />
+   <id column="POSTCODE" jdbcType="VARCHAR" property="postcode" />
+   <id column="ADDRESS" jdbcType="VARCHAR" property="address" />
+   <id column="SIGNDATE" jdbcType="VARCHAR" property="signdate" />
+   <id column="OVERDATE" jdbcType="VARCHAR" property="overdate" />
+   <id column="COOPSTATUS" jdbcType="VARCHAR" property="coopstatus" />
+   <id column="SIGNFLAG" jdbcType="VARCHAR" property="signflag" />
+   <id column="CREATEDATE" jdbcType="VARCHAR" property="createdate" />
+   <id column="CREATETIME" jdbcType="VARCHAR" property="createtime" />
+   <id column="UPDATEDATE" jdbcType="VARCHAR" property="updatedate" />
+   <id column="UPDATETIME" jdbcType="VARCHAR" property="updatetime" />
+   <id column="CREATEUSR" jdbcType="VARCHAR" property="createusr" />
+   <id column="UPDATEUSR" jdbcType="VARCHAR" property="updateusr" />
+   <id column="SETMODE" jdbcType="VARCHAR" property="setmode" />
+   <id column="MGNTYPE" jdbcType="VARCHAR" property="mgntype" />
+   <id column="HISBALMODE" jdbcType="VARCHAR" property="hisbalmode" />
+   <id column="BANKCUSTID" jdbcType="VARCHAR" property="bankcustid" />
+   <id column="PWD" jdbcType="VARCHAR" property="pwd" />
+   <id column="BCISSTATUS" jdbcType="VARCHAR" property="bcisstatus" />
+   <id column="BANKTXTOKEN" jdbcType="VARCHAR" property="banktxtoken" />
+   <id column="CNAPSTOKEN" jdbcType="CHAR" property="cnapstoken" />
+   <id column="BANKUSERNO" jdbcType="VARCHAR" property="bankuserno" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		BANK_ID, 
+  		BANKCODE, 
+  		SHORTNAME, 
+  		FULLNAME, 
+  		CORPCODE, 
+  		BANKACC, 
+  		INNERACC, 
+  		BRANCHID, 
+  		AREACODE, 
+  		TECHPHONE, 
+  		BIZPHONE, 
+  		POSTCODE, 
+  		ADDRESS, 
+  		SIGNDATE, 
+  		OVERDATE, 
+  		COOPSTATUS, 
+  		SIGNFLAG, 
+  		CREATEDATE, 
+  		CREATETIME, 
+  		UPDATEDATE, 
+  		UPDATETIME, 
+  		CREATEUSR, 
+  		UPDATEUSR, 
+  		SETMODE, 
+  		MGNTYPE, 
+  		HISBALMODE, 
+  		BANKCUSTID, 
+  		PWD, 
+  		BCISSTATUS, 
+  		BANKTXTOKEN, 
+  		CNAPSTOKEN, 
+  		BANKUSERNO 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.bedc.model.BciBank">
+    DELETE FROM BCI_BANK
+    WHERE 
+   		 BANK_ID=#{bankId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into BCI_BANK (
+	     BANK_ID,
+	     BANKCODE,
+	     SHORTNAME,
+	     FULLNAME,
+	     CORPCODE,
+	     BANKACC,
+	     INNERACC,
+	     BRANCHID,
+	     AREACODE,
+	     TECHPHONE,
+	     BIZPHONE,
+	     POSTCODE,
+	     ADDRESS,
+	     SIGNDATE,
+	     OVERDATE,
+	     COOPSTATUS,
+	     SIGNFLAG,
+	     CREATEDATE,
+	     CREATETIME,
+	     UPDATEDATE,
+	     UPDATETIME,
+	     CREATEUSR,
+	     UPDATEUSR,
+	     SETMODE,
+	     MGNTYPE,
+	     HISBALMODE,
+	     BANKCUSTID,
+	     PWD,
+	     BCISSTATUS,
+	     BANKTXTOKEN,
+	     CNAPSTOKEN,
+	     BANKUSERNO
+		   )values (
+		     #{bankId,jdbcType=DECIMAL},
+		     #{bankcode,jdbcType=VARCHAR},
+		     #{shortname,jdbcType=VARCHAR},
+		     #{fullname,jdbcType=VARCHAR},
+		     #{corpcode,jdbcType=VARCHAR},
+		     #{bankacc,jdbcType=VARCHAR},
+		     #{inneracc,jdbcType=VARCHAR},
+		     #{branchid,jdbcType=VARCHAR},
+		     #{areacode,jdbcType=VARCHAR},
+		     #{techphone,jdbcType=VARCHAR},
+		     #{bizphone,jdbcType=VARCHAR},
+		     #{postcode,jdbcType=VARCHAR},
+		     #{address,jdbcType=VARCHAR},
+		     #{signdate,jdbcType=VARCHAR},
+		     #{overdate,jdbcType=VARCHAR},
+		     #{coopstatus,jdbcType=VARCHAR},
+		     #{signflag,jdbcType=VARCHAR},
+		     #{createdate,jdbcType=VARCHAR},
+		     #{createtime,jdbcType=VARCHAR},
+		     #{updatedate,jdbcType=VARCHAR},
+		     #{updatetime,jdbcType=VARCHAR},
+		     #{createusr,jdbcType=VARCHAR},
+		     #{updateusr,jdbcType=VARCHAR},
+		     #{setmode,jdbcType=VARCHAR},
+		     #{mgntype,jdbcType=VARCHAR},
+		     #{hisbalmode,jdbcType=VARCHAR},
+		     #{bankcustid,jdbcType=VARCHAR},
+		     #{pwd,jdbcType=VARCHAR},
+		     #{bcisstatus,jdbcType=VARCHAR},
+		     #{banktxtoken,jdbcType=VARCHAR},
+		     #{cnapstoken,jdbcType=CHAR},
+		     #{bankuserno,jdbcType=VARCHAR}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO BCI_BANK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="bankId != null and bankId!=''" >
+      			 BANK_ID,
+      		</if>
+  			<if test="bankcode != null and bankcode!=''" >
+      			 BANKCODE,
+      		</if>
+  			<if test="shortname != null and shortname!=''" >
+      			 SHORTNAME,
+      		</if>
+  			<if test="fullname != null and fullname!=''" >
+      			 FULLNAME,
+      		</if>
+  			<if test="corpcode != null and corpcode!=''" >
+      			 CORPCODE,
+      		</if>
+  			<if test="bankacc != null and bankacc!=''" >
+      			 BANKACC,
+      		</if>
+  			<if test="inneracc != null and inneracc!=''" >
+      			 INNERACC,
+      		</if>
+  			<if test="branchid != null and branchid!=''" >
+      			 BRANCHID,
+      		</if>
+  			<if test="areacode != null and areacode!=''" >
+      			 AREACODE,
+      		</if>
+  			<if test="techphone != null and techphone!=''" >
+      			 TECHPHONE,
+      		</if>
+  			<if test="bizphone != null and bizphone!=''" >
+      			 BIZPHONE,
+      		</if>
+  			<if test="postcode != null and postcode!=''" >
+      			 POSTCODE,
+      		</if>
+  			<if test="address != null and address!=''" >
+      			 ADDRESS,
+      		</if>
+  			<if test="signdate != null and signdate!=''" >
+      			 SIGNDATE,
+      		</if>
+  			<if test="overdate != null and overdate!=''" >
+      			 OVERDATE,
+      		</if>
+  			<if test="coopstatus != null and coopstatus!=''" >
+      			 COOPSTATUS,
+      		</if>
+  			<if test="signflag != null and signflag!=''" >
+      			 SIGNFLAG,
+      		</if>
+  			<if test="createdate != null and createdate!=''" >
+      			 CREATEDATE,
+      		</if>
+  			<if test="createtime != null and createtime!=''" >
+      			 CREATETIME,
+      		</if>
+  			<if test="updatedate != null and updatedate!=''" >
+      			 UPDATEDATE,
+      		</if>
+  			<if test="updatetime != null and updatetime!=''" >
+      			 UPDATETIME,
+      		</if>
+  			<if test="createusr != null and createusr!=''" >
+      			 CREATEUSR,
+      		</if>
+  			<if test="updateusr != null and updateusr!=''" >
+      			 UPDATEUSR,
+      		</if>
+  			<if test="setmode != null and setmode!=''" >
+      			 SETMODE,
+      		</if>
+  			<if test="mgntype != null and mgntype!=''" >
+      			 MGNTYPE,
+      		</if>
+  			<if test="hisbalmode != null and hisbalmode!=''" >
+      			 HISBALMODE,
+      		</if>
+  			<if test="bankcustid != null and bankcustid!=''" >
+      			 BANKCUSTID,
+      		</if>
+  			<if test="pwd != null and pwd!=''" >
+      			 PWD,
+      		</if>
+  			<if test="bcisstatus != null and bcisstatus!=''" >
+      			 BCISSTATUS,
+      		</if>
+  			<if test="banktxtoken != null and banktxtoken!=''" >
+      			 BANKTXTOKEN,
+      		</if>
+  			<if test="cnapstoken != null and cnapstoken!=''" >
+      			 CNAPSTOKEN,
+      		</if>
+  			<if test="bankuserno != null and bankuserno!=''" >
+      			 BANKUSERNO
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="bankId != null and bankId!=''" >
+		    	 #{bankId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="bankcode != null and bankcode!=''" >
+		    	 #{bankcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="shortname != null and shortname!=''" >
+		    	 #{shortname,jdbcType=VARCHAR},
+		     </if>
+    		<if test="fullname != null and fullname!=''" >
+		    	 #{fullname,jdbcType=VARCHAR},
+		     </if>
+    		<if test="corpcode != null and corpcode!=''" >
+		    	 #{corpcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankacc != null and bankacc!=''" >
+		    	 #{bankacc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="inneracc != null and inneracc!=''" >
+		    	 #{inneracc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="branchid != null and branchid!=''" >
+		    	 #{branchid,jdbcType=VARCHAR},
+		     </if>
+    		<if test="areacode != null and areacode!=''" >
+		    	 #{areacode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="techphone != null and techphone!=''" >
+		    	 #{techphone,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bizphone != null and bizphone!=''" >
+		    	 #{bizphone,jdbcType=VARCHAR},
+		     </if>
+    		<if test="postcode != null and postcode!=''" >
+		    	 #{postcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="address != null and address!=''" >
+		    	 #{address,jdbcType=VARCHAR},
+		     </if>
+    		<if test="signdate != null and signdate!=''" >
+		    	 #{signdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="overdate != null and overdate!=''" >
+		    	 #{overdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="coopstatus != null and coopstatus!=''" >
+		    	 #{coopstatus,jdbcType=VARCHAR},
+		     </if>
+    		<if test="signflag != null and signflag!=''" >
+		    	 #{signflag,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdate != null and createdate!=''" >
+		    	 #{createdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createtime != null and createtime!=''" >
+		    	 #{createtime,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedate != null and updatedate!=''" >
+		    	 #{updatedate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatetime != null and updatetime!=''" >
+		    	 #{updatetime,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createusr != null and createusr!=''" >
+		    	 #{createusr,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updateusr != null and updateusr!=''" >
+		    	 #{updateusr,jdbcType=VARCHAR},
+		     </if>
+    		<if test="setmode != null and setmode!=''" >
+		    	 #{setmode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="mgntype != null and mgntype!=''" >
+		    	 #{mgntype,jdbcType=VARCHAR},
+		     </if>
+    		<if test="hisbalmode != null and hisbalmode!=''" >
+		    	 #{hisbalmode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankcustid != null and bankcustid!=''" >
+		    	 #{bankcustid,jdbcType=VARCHAR},
+		     </if>
+    		<if test="pwd != null and pwd!=''" >
+		    	 #{pwd,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bcisstatus != null and bcisstatus!=''" >
+		    	 #{bcisstatus,jdbcType=VARCHAR},
+		     </if>
+    		<if test="banktxtoken != null and banktxtoken!=''" >
+		    	 #{banktxtoken,jdbcType=VARCHAR},
+		     </if>
+    		<if test="cnapstoken != null and cnapstoken!=''" >
+		    	 #{cnapstoken,jdbcType=CHAR},
+		     </if>
+    		<if test="bankuserno != null and bankuserno!=''" >
+		    	 #{bankuserno,jdbcType=VARCHAR}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_BANK
+    WHERE 
+   		 BANK_ID=#{bankId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM BCI_BANK
+    WHERE 1=1
+    <if test="bankcode != null and bankcode!=''" >
+	AND	  BANKCODE= #{bankcode,jdbcType=VARCHAR}
+     </if>
+  		<if test="shortname != null and shortname!=''" >
+    AND	SHORTNAME LIKE '%${shortname}%'
+     </if>
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM BCI_BANK
+    WHERE 1=1
+    <if test="bankcode != null and bankcode!=''" >
+	AND	  BANKCODE= #{bankcode,jdbcType=VARCHAR}
+     </if>
+  		<if test="shortname != null and shortname!=''" >
+    AND	SHORTNAME  LIKE '%${shortname}%'
+     </if>
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE BCI_BANK
+    <set >
+    		<if test="bankId != null and bankId!=''" >
+		    	BANK_ID=#{bankId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="bankcode != null and bankcode!=''" >
+		    	BANKCODE=#{bankcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="shortname != null and shortname!=''" >
+		    	SHORTNAME=#{shortname,jdbcType=VARCHAR},
+		     </if>
+    		<if test="fullname != null and fullname!=''" >
+		    	FULLNAME=#{fullname,jdbcType=VARCHAR},
+		     </if>
+    		<if test="corpcode != null and corpcode!=''" >
+		    	CORPCODE=#{corpcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankacc != null and bankacc!=''" >
+		    	BANKACC=#{bankacc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="inneracc != null and inneracc!=''" >
+		    	INNERACC=#{inneracc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="branchid != null and branchid!=''" >
+		    	BRANCHID=#{branchid,jdbcType=VARCHAR},
+		     </if>
+    		<if test="areacode != null and areacode!=''" >
+		    	AREACODE=#{areacode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="techphone != null and techphone!=''" >
+		    	TECHPHONE=#{techphone,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bizphone != null and bizphone!=''" >
+		    	BIZPHONE=#{bizphone,jdbcType=VARCHAR},
+		     </if>
+    		<if test="postcode != null and postcode!=''" >
+		    	POSTCODE=#{postcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="address != null and address!=''" >
+		    	ADDRESS=#{address,jdbcType=VARCHAR},
+		     </if>
+    		<if test="signdate != null and signdate!=''" >
+		    	SIGNDATE=#{signdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="overdate != null and overdate!=''" >
+		    	OVERDATE=#{overdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="coopstatus != null and coopstatus!=''" >
+		    	COOPSTATUS=#{coopstatus,jdbcType=VARCHAR},
+		     </if>
+    		<if test="signflag != null and signflag!=''" >
+		    	SIGNFLAG=#{signflag,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdate != null and createdate!=''" >
+		    	CREATEDATE=#{createdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createtime != null and createtime!=''" >
+		    	CREATETIME=#{createtime,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedate != null and updatedate!=''" >
+		    	UPDATEDATE=#{updatedate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatetime != null and updatetime!=''" >
+		    	UPDATETIME=#{updatetime,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createusr != null and createusr!=''" >
+		    	CREATEUSR=#{createusr,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updateusr != null and updateusr!=''" >
+		    	UPDATEUSR=#{updateusr,jdbcType=VARCHAR},
+		     </if>
+    		<if test="setmode != null and setmode!=''" >
+		    	SETMODE=#{setmode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="mgntype != null and mgntype!=''" >
+		    	MGNTYPE=#{mgntype,jdbcType=VARCHAR},
+		     </if>
+    		<if test="hisbalmode != null and hisbalmode!=''" >
+		    	HISBALMODE=#{hisbalmode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankcustid != null and bankcustid!=''" >
+		    	BANKCUSTID=#{bankcustid,jdbcType=VARCHAR},
+		     </if>
+    		<if test="pwd != null and pwd!=''" >
+		    	PWD=#{pwd,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bcisstatus != null and bcisstatus!=''" >
+		    	BCISSTATUS=#{bcisstatus,jdbcType=VARCHAR},
+		     </if>
+    		<if test="banktxtoken != null and banktxtoken!=''" >
+		    	BANKTXTOKEN=#{banktxtoken,jdbcType=VARCHAR},
+		     </if>
+    		<if test="cnapstoken != null and cnapstoken!=''" >
+		    	CNAPSTOKEN=#{cnapstoken,jdbcType=CHAR},
+		     </if>
+    		<if test="bankuserno != null and bankuserno!=''" >
+		    	BANKUSERNO=#{bankuserno,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 BANK_ID=#{bankId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE BCI_BANK
+    <set >
+    		<if test="bankId != null and bankId!=''" >
+		    	BANK_ID=#{bankId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="bankcode != null and bankcode!=''" >
+		    	BANKCODE=#{bankcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="shortname != null and shortname!=''" >
+		    	SHORTNAME=#{shortname,jdbcType=VARCHAR},
+		     </if>
+    		<if test="fullname != null and fullname!=''" >
+		    	FULLNAME=#{fullname,jdbcType=VARCHAR},
+		     </if>
+    		<if test="corpcode != null and corpcode!=''" >
+		    	CORPCODE=#{corpcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankacc != null and bankacc!=''" >
+		    	BANKACC=#{bankacc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="inneracc != null and inneracc!=''" >
+		    	INNERACC=#{inneracc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="branchid != null and branchid!=''" >
+		    	BRANCHID=#{branchid,jdbcType=VARCHAR},
+		     </if>
+    		<if test="areacode != null and areacode!=''" >
+		    	AREACODE=#{areacode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="techphone != null and techphone!=''" >
+		    	TECHPHONE=#{techphone,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bizphone != null and bizphone!=''" >
+		    	BIZPHONE=#{bizphone,jdbcType=VARCHAR},
+		     </if>
+    		<if test="postcode != null and postcode!=''" >
+		    	POSTCODE=#{postcode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="address != null and address!=''" >
+		    	ADDRESS=#{address,jdbcType=VARCHAR},
+		     </if>
+    		<if test="signdate != null and signdate!=''" >
+		    	SIGNDATE=#{signdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="overdate != null and overdate!=''" >
+		    	OVERDATE=#{overdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="coopstatus != null and coopstatus!=''" >
+		    	COOPSTATUS=#{coopstatus,jdbcType=VARCHAR},
+		     </if>
+    		<if test="signflag != null and signflag!=''" >
+		    	SIGNFLAG=#{signflag,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdate != null and createdate!=''" >
+		    	CREATEDATE=#{createdate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createtime != null and createtime!=''" >
+		    	CREATETIME=#{createtime,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatedate != null and updatedate!=''" >
+		    	UPDATEDATE=#{updatedate,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updatetime != null and updatetime!=''" >
+		    	UPDATETIME=#{updatetime,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createusr != null and createusr!=''" >
+		    	CREATEUSR=#{createusr,jdbcType=VARCHAR},
+		     </if>
+    		<if test="updateusr != null and updateusr!=''" >
+		    	UPDATEUSR=#{updateusr,jdbcType=VARCHAR},
+		     </if>
+    		<if test="setmode != null and setmode!=''" >
+		    	SETMODE=#{setmode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="mgntype != null and mgntype!=''" >
+		    	MGNTYPE=#{mgntype,jdbcType=VARCHAR},
+		     </if>
+    		<if test="hisbalmode != null and hisbalmode!=''" >
+		    	HISBALMODE=#{hisbalmode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankcustid != null and bankcustid!=''" >
+		    	BANKCUSTID=#{bankcustid,jdbcType=VARCHAR},
+		     </if>
+    		<if test="pwd != null and pwd!=''" >
+		    	PWD=#{pwd,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bcisstatus != null and bcisstatus!=''" >
+		    	BCISSTATUS=#{bcisstatus,jdbcType=VARCHAR},
+		     </if>
+    		<if test="banktxtoken != null and banktxtoken!=''" >
+		    	BANKTXTOKEN=#{banktxtoken,jdbcType=VARCHAR},
+		     </if>
+    		<if test="cnapstoken != null and cnapstoken!=''" >
+		    	CNAPSTOKEN=#{cnapstoken,jdbcType=CHAR},
+		     </if>
+    		<if test="bankuserno != null and bankuserno!=''" >
+		    	BANKUSERNO=#{bankuserno,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 BANK_ID=#{bankId,jdbcType=DECIMAL} 
+  </update>
+  
+   <select id="getALLBANK" resultMap="BaseResultMap">
+  	 SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_BANK
+  </select>
+  
+</mapper> 

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BciXmlParamsMapper">
+<resultMap id="BaseResultMap" type="com.pccw.bedc.model.BciXmlParams">
+   <id column="PARAM_ID" jdbcType="DECIMAL" property="paramId" />
+   <id column="PARAM_NAME" jdbcType="VARCHAR" property="paramName" />
+   <id column="PARAM_TYPE" jdbcType="CHAR" property="paramType" />
+   <id column="DEFAULT_VALUE" jdbcType="VARCHAR" property="defaultValue" />
+   <id column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+   <id column="TRAN_CODE" jdbcType="VARCHAR" property="tranCode" />
+   <id column="TEMPLATE_ID" jdbcType="DECIMAL" property="templateId" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="LAST_UPDATED_BY" jdbcType="VARCHAR" property="lastUpdatedBy" />
+   <id column="LAST_UPDATED_DATE" jdbcType="DATE" property="lastUpdatedDate" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		PARAM_ID, 
+  		PARAM_NAME, 
+  		PARAM_TYPE, 
+  		DEFAULT_VALUE, 
+  		BANK_CODE, 
+  		TRAN_CODE, 
+  		TEMPLATE_ID, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.bedc.model.BciXmlParams">
+    DELETE FROM BCI_XML_PARAMS
+    WHERE 
+   		 PARAM_ID=#{paramId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into BCI_XML_PARAMS (
+	     PARAM_ID,
+	     PARAM_NAME,
+	     PARAM_TYPE,
+	     DEFAULT_VALUE,
+	     BANK_CODE,
+	     TRAN_CODE,
+	     TEMPLATE_ID,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     LAST_UPDATED_BY,
+	     LAST_UPDATED_DATE
+		   )values (
+		     #{paramId,jdbcType=DECIMAL},
+		     #{paramName,jdbcType=VARCHAR},
+		     #{paramType,jdbcType=CHAR},
+		     #{defaultValue,jdbcType=VARCHAR},
+		     #{bankCode,jdbcType=VARCHAR},
+		     #{tranCode,jdbcType=VARCHAR},
+		     #{templateId,jdbcType=DECIMAL},
+		     #{createdBy,jdbcType=VARCHAR},
+		     #{createdDate,jdbcType=DATE},
+		     #{lastUpdatedBy,jdbcType=VARCHAR},
+		     #{lastUpdatedDate,jdbcType=DATE}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO BCI_XML_PARAMS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="paramId != null and paramId!=''" >
+      			 PARAM_ID,
+      		</if>
+  			<if test="paramName != null and paramName!=''" >
+      			 PARAM_NAME,
+      		</if>
+  			<if test="paramType != null and paramType!=''" >
+      			 PARAM_TYPE,
+      		</if>
+  			<if test="defaultValue != null and defaultValue!=''" >
+      			 DEFAULT_VALUE,
+      		</if>
+  			<if test="bankCode != null and bankCode!=''" >
+      			 BANK_CODE,
+      		</if>
+  			<if test="tranCode != null and tranCode!=''" >
+      			 TRAN_CODE,
+      		</if>
+  			<if test="templateId != null and templateId!=''" >
+      			 TEMPLATE_ID,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+      			 LAST_UPDATED_BY,
+      		</if>
+  			<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+      			 LAST_UPDATED_DATE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="paramId != null and paramId!=''" >
+		    	 #{paramId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="paramName != null and paramName!=''" >
+		    	 #{paramName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="paramType != null and paramType!=''" >
+		    	 #{paramType,jdbcType=CHAR},
+		     </if>
+    		<if test="defaultValue != null and defaultValue!=''" >
+		    	 #{defaultValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	 #{bankCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="tranCode != null and tranCode!=''" >
+		    	 #{tranCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="templateId != null and templateId!=''" >
+		    	 #{templateId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	 #{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	 #{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_XML_PARAMS
+    WHERE 
+   		 PARAM_ID=#{paramId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM BCI_XML_PARAMS
+    WHERE 1=1
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM BCI_XML_PARAMS
+    WHERE 1=1
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE BCI_XML_PARAMS
+    <set >
+    		<if test="paramId != null and paramId!=''" >
+		    	PARAM_ID=#{paramId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="paramName != null and paramName!=''" >
+		    	PARAM_NAME=#{paramName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="paramType != null and paramType!=''" >
+		    	PARAM_TYPE=#{paramType,jdbcType=CHAR},
+		     </if>
+    		<if test="defaultValue != null and defaultValue!=''" >
+		    	DEFAULT_VALUE=#{defaultValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	BANK_CODE=#{bankCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="tranCode != null and tranCode!=''" >
+		    	TRAN_CODE=#{tranCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="templateId != null and templateId!=''" >
+		    	TEMPLATE_ID=#{templateId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 PARAM_ID=#{paramId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE BCI_XML_PARAMS
+    <set >
+    		<if test="paramId != null and paramId!=''" >
+		    	PARAM_ID=#{paramId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="paramName != null and paramName!=''" >
+		    	PARAM_NAME=#{paramName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="paramType != null and paramType!=''" >
+		    	PARAM_TYPE=#{paramType,jdbcType=CHAR},
+		     </if>
+    		<if test="defaultValue != null and defaultValue!=''" >
+		    	DEFAULT_VALUE=#{defaultValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	BANK_CODE=#{bankCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="tranCode != null and tranCode!=''" >
+		    	TRAN_CODE=#{tranCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="templateId != null and templateId!=''" >
+		    	TEMPLATE_ID=#{templateId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 PARAM_ID=#{paramId,jdbcType=DECIMAL} 
+  </update>
+  
+  <select id="getBankTransParams" parameterType="map" resultMap="BaseResultMap">
+  	 SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_XML_PARAMS
+    WHERE 
+    1=1
+   		<if test="bankCode != null and bankCode!=''" >
+		   AND 	BANK_CODE=#{bankCode,jdbcType=VARCHAR}
+		   </if>
+    	<if test="tranCode != null and tranCode!=''" >
+		    AND	TRAN_CODE=#{tranCode,jdbcType=VARCHAR},
+		    </if>
+    	<if test="templateId != null and templateId!=''" >
+		    AND TEMPLATE_ID=#{templateId,jdbcType=DECIMAL},
+		   </if>
+  </select>
+  
+  <select id="testmap" resultType="java.util.Map">
+  	select param_id paramId,param_name paramName from bci_xml_params
+  </select>
+  
+</mapper> 

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.system.dao.TaskScheduleJobMapper">
+<resultMap id="BaseResultMap" type="com.pccw.system.model.TaskScheduleJob">
+   <id column="JOB_ID" jdbcType="DECIMAL" property="jobId" />
+   <id column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
+   <id column="JOB_GROUP" jdbcType="VARCHAR" property="jobGroup" />
+   <id column="JOB_STATUS" jdbcType="CHAR" property="jobStatus" />
+   <id column="JOB_CRON_EXPRESSION" jdbcType="VARCHAR" property="jobCronExpression" />
+   <id column="JOB_DESCRIPTION" jdbcType="VARCHAR" property="jobDescription" />
+   <id column="BEAN_CLASS" jdbcType="VARCHAR" property="beanClass" />
+   <id column="IS_CONCURRENT" jdbcType="CHAR" property="isConcurrent" />
+   <id column="SPRING_ID" jdbcType="VARCHAR" property="springId" />
+   <id column="METHOD_NAME" jdbcType="VARCHAR" property="methodName" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="LAST_UPDATED_BY" jdbcType="VARCHAR" property="lastUpdatedBy" />
+   <id column="LAST_UPDATED_DATE" jdbcType="DATE" property="lastUpdatedDate" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		JOB_ID, 
+  		JOB_NAME, 
+  		JOB_GROUP, 
+  		JOB_STATUS, 
+  		JOB_CRON_EXPRESSION, 
+  		JOB_DESCRIPTION, 
+  		BEAN_CLASS, 
+  		IS_CONCURRENT, 
+  		SPRING_ID, 
+  		METHOD_NAME, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE 
+  </sql>
+  
+  <select id="getAllTask" resultMap="BaseResultMap">
+  	  SELECT 
+    <include refid="Base_Column_List" />
+    FROM TASK_SCHEDULE_JOB
+  </select>
+  
+  
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.system.model.TaskScheduleJob">
+    DELETE FROM TASK_SCHEDULE_JOB
+    WHERE 
+   		 JOB_ID=#{jobId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into TASK_SCHEDULE_JOB (
+	     JOB_ID,
+	     JOB_NAME,
+	     JOB_GROUP,
+	     JOB_STATUS,
+	     JOB_CRON_EXPRESSION,
+	     JOB_DESCRIPTION,
+	     BEAN_CLASS,
+	     IS_CONCURRENT,
+	     SPRING_ID,
+	     METHOD_NAME,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     LAST_UPDATED_BY,
+	     LAST_UPDATED_DATE
+		   )values (
+		     #{jobId,jdbcType=DECIMAL},
+		     #{jobName,jdbcType=VARCHAR},
+		     #{jobGroup,jdbcType=VARCHAR},
+		     #{jobStatus,jdbcType=CHAR},
+		     #{jobCronExpression,jdbcType=VARCHAR},
+		     #{jobDescription,jdbcType=VARCHAR},
+		     #{beanClass,jdbcType=VARCHAR},
+		     #{isConcurrent,jdbcType=CHAR},
+		     #{springId,jdbcType=VARCHAR},
+		     #{methodName,jdbcType=VARCHAR},
+		     #{createdBy,jdbcType=VARCHAR},
+		     #{createdDate,jdbcType=DATE},
+		     #{lastUpdatedBy,jdbcType=VARCHAR},
+		     #{lastUpdatedDate,jdbcType=DATE}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO TASK_SCHEDULE_JOB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="jobId != null and jobId!=''" >
+      			 JOB_ID,
+      		</if>
+  			<if test="jobName != null and jobName!=''" >
+      			 JOB_NAME,
+      		</if>
+  			<if test="jobGroup != null and jobGroup!=''" >
+      			 JOB_GROUP,
+      		</if>
+  			<if test="jobStatus != null and jobStatus!=''" >
+      			 JOB_STATUS,
+      		</if>
+  			<if test="jobCronExpression != null and jobCronExpression!=''" >
+      			 JOB_CRON_EXPRESSION,
+      		</if>
+  			<if test="jobDescription != null and jobDescription!=''" >
+      			 JOB_DESCRIPTION,
+      		</if>
+  			<if test="beanClass != null and beanClass!=''" >
+      			 BEAN_CLASS,
+      		</if>
+  			<if test="isConcurrent != null and isConcurrent!=''" >
+      			 IS_CONCURRENT,
+      		</if>
+  			<if test="springId != null and springId!=''" >
+      			 SPRING_ID,
+      		</if>
+  			<if test="methodName != null and methodName!=''" >
+      			 METHOD_NAME,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+      			 LAST_UPDATED_BY,
+      		</if>
+  			<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+      			 LAST_UPDATED_DATE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="jobId != null and jobId!=''" >
+		    	 #{jobId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="jobName != null and jobName!=''" >
+		    	 #{jobName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobGroup != null and jobGroup!=''" >
+		    	 #{jobGroup,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobStatus != null and jobStatus!=''" >
+		    	 #{jobStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="jobCronExpression != null and jobCronExpression!=''" >
+		    	 #{jobCronExpression,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobDescription != null and jobDescription!=''" >
+		    	 #{jobDescription,jdbcType=VARCHAR},
+		     </if>
+    		<if test="beanClass != null and beanClass!=''" >
+		    	 #{beanClass,jdbcType=VARCHAR},
+		     </if>
+    		<if test="isConcurrent != null and isConcurrent!=''" >
+		    	 #{isConcurrent,jdbcType=CHAR},
+		     </if>
+    		<if test="springId != null and springId!=''" >
+		    	 #{springId,jdbcType=VARCHAR},
+		     </if>
+    		<if test="methodName != null and methodName!=''" >
+		    	 #{methodName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	 #{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	 #{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM TASK_SCHEDULE_JOB
+    WHERE 
+   		 JOB_ID=#{jobId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM TASK_SCHEDULE_JOB
+    WHERE 1=1
+    <if test="jobName != null and jobName!=''" >
+		and	 JOB_NAME like '%${jobName}%'
+	</if>
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM TASK_SCHEDULE_JOB
+    WHERE 1=1
+    <if test="jobName != null and jobName!=''" >
+		and	 JOB_NAME like '%${jobName}%'
+	</if>
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.pccw.system.model.TaskScheduleJob" >
+    UPDATE TASK_SCHEDULE_JOB
+    <set >
+    		<if test="jobId != null and jobId!=''" >
+		    	JOB_ID=#{jobId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="jobName != null and jobName!=''" >
+		    	JOB_NAME=#{jobName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobGroup != null and jobGroup!=''" >
+		    	JOB_GROUP=#{jobGroup,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobStatus != null and jobStatus!=''" >
+		    	JOB_STATUS=#{jobStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="jobCronExpression != null and jobCronExpression!=''" >
+		    	JOB_CRON_EXPRESSION=#{jobCronExpression,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobDescription != null and jobDescription!=''" >
+		    	JOB_DESCRIPTION=#{jobDescription,jdbcType=VARCHAR},
+		     </if>
+    		<if test="beanClass != null and beanClass!=''" >
+		    	BEAN_CLASS=#{beanClass,jdbcType=VARCHAR},
+		     </if>
+    		<if test="isConcurrent != null and isConcurrent!=''" >
+		    	IS_CONCURRENT=#{isConcurrent,jdbcType=CHAR},
+		     </if>
+    		<if test="springId != null and springId!=''" >
+		    	SPRING_ID=#{springId,jdbcType=VARCHAR},
+		     </if>
+    		<if test="methodName != null and methodName!=''" >
+		    	METHOD_NAME=#{methodName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 JOB_ID=#{jobId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE TASK_SCHEDULE_JOB
+    <set >
+    		<if test="jobId != null and jobId!=''" >
+		    	JOB_ID=#{jobId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="jobName != null and jobName!=''" >
+		    	JOB_NAME=#{jobName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobGroup != null and jobGroup!=''" >
+		    	JOB_GROUP=#{jobGroup,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobStatus != null and jobStatus!=''" >
+		    	JOB_STATUS=#{jobStatus,jdbcType=CHAR},
+		     </if>
+    		<if test="jobCronExpression != null and jobCronExpression!=''" >
+		    	JOB_CRON_EXPRESSION=#{jobCronExpression,jdbcType=VARCHAR},
+		     </if>
+    		<if test="jobDescription != null and jobDescription!=''" >
+		    	JOB_DESCRIPTION=#{jobDescription,jdbcType=VARCHAR},
+		     </if>
+    		<if test="beanClass != null and beanClass!=''" >
+		    	BEAN_CLASS=#{beanClass,jdbcType=VARCHAR},
+		     </if>
+    		<if test="isConcurrent != null and isConcurrent!=''" >
+		    	IS_CONCURRENT=#{isConcurrent,jdbcType=CHAR},
+		     </if>
+    		<if test="springId != null and springId!=''" >
+		    	SPRING_ID=#{springId,jdbcType=VARCHAR},
+		     </if>
+    		<if test="methodName != null and methodName!=''" >
+		    	METHOD_NAME=#{methodName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 JOB_ID=#{jobId,jdbcType=DECIMAL} 
+  </update>
+  
+</mapper> 

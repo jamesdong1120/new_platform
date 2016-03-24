@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BciBankHeadCfgMapper">
+<resultMap id="BaseResultMap" type="com.pccw.bedc.model.BciBankHeadCfg">
+   <id column="HEAD_CONFIG_ID" jdbcType="DECIMAL" property="headConfigId" />
+   <id column="HEAD_CONFIG_DESC" jdbcType="VARCHAR" property="headConfigDesc" />
+   <id column="HEAD_CONFIG_CONTENT" jdbcType="CLOB" property="headConfigContent" />
+   <id column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+   <id column="STATUS" jdbcType="CHAR" property="status" />
+   <id column="CONFIG_VERSION" jdbcType="VARCHAR" property="configVersion" />
+   <id column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="LAST_UPDATED_BY" jdbcType="VARCHAR" property="lastUpdatedBy" />
+   <id column="LAST_UPDATED_DATE" jdbcType="DATE" property="lastUpdatedDate" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		HEAD_CONFIG_ID, 
+  		HEAD_CONFIG_DESC, 
+  		HEAD_CONFIG_CONTENT, 
+  		BANK_CODE, 
+  		STATUS, 
+  		CONFIG_VERSION, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.bedc.model.BciBankHeadCfg">
+    DELETE FROM BCI_BANK_HEAD_CFG 
+    WHERE 
+   		 HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into BCI_BANK_HEAD_CFG (
+	     HEAD_CONFIG_ID,
+	     HEAD_CONFIG_DESC,
+	     HEAD_CONFIG_CONTENT,
+	     BANK_CODE,
+	     STATUS,
+	     CONFIG_VERSION,
+	     CREATED_BY,
+	     CREATED_DATE,
+	     LAST_UPDATED_BY,
+	     LAST_UPDATED_DATE
+		   )values (
+		     #{headConfigId,jdbcType=DECIMAL},
+		     #{headConfigDesc,jdbcType=VARCHAR},
+		     #{headConfigContent,jdbcType=CLOB},
+		     #{bankCode,jdbcType=VARCHAR},
+		     #{status,jdbcType=CHAR},
+		     #{configVersion,jdbcType=VARCHAR},
+		     #{createdBy,jdbcType=VARCHAR},
+		     #{createdDate,jdbcType=DATE},
+		     #{lastUpdatedBy,jdbcType=VARCHAR},
+		     #{lastUpdatedDate,jdbcType=DATE}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO BCI_BANK_HEAD_CFG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="headConfigId != null and headConfigId!=''" >
+      			 HEAD_CONFIG_ID,
+      		</if>
+  			<if test="headConfigDesc != null and headConfigDesc!=''" >
+      			 HEAD_CONFIG_DESC,
+      		</if>
+  			<if test="headConfigContent != null and headConfigContent!=''" >
+      			 HEAD_CONFIG_CONTENT,
+      		</if>
+  			<if test="bankCode != null and bankCode!=''" >
+      			 BANK_CODE,
+      		</if>
+  			<if test="status != null and status!=''" >
+      			 STATUS,
+      		</if>
+  			<if test="configVersion != null and configVersion!=''" >
+      			 CONFIG_VERSION,
+      		</if>
+  			<if test="createdBy != null and createdBy!=''" >
+      			 CREATED_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+      			 LAST_UPDATED_BY,
+      		</if>
+  			<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+      			 LAST_UPDATED_DATE
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="headConfigId != null and headConfigId!=''" >
+		    	 #{headConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="headConfigDesc != null and headConfigDesc!=''" >
+		    	 #{headConfigDesc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="headConfigContent != null and headConfigContent!=''" >
+		    	 #{headConfigContent,jdbcType=CLOB},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	 #{bankCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="status != null and status!=''" >
+		    	 #{status,jdbcType=CHAR},
+		     </if>
+    		<if test="configVersion != null and configVersion!=''" >
+		    	 #{configVersion,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	 #{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	 #{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	 #{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_BANK_HEAD_CFG
+    WHERE 
+   		 HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+  		HEAD_CONFIG_ID, 
+  		HEAD_CONFIG_DESC, 
+  		BANK_CODE, 
+  		STATUS, 
+  		CONFIG_VERSION, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE 
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM BCI_BANK_HEAD_CFG
+    WHERE 1=1
+     <if test="bankCode != null and bankCode!=''" >
+		   AND  BANK_CODE=#{bankCode,jdbcType=VARCHAR}
+	</if>
+    
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM BCI_BANK_HEAD_CFG
+    WHERE 1=1
+     <if test="bankCode != null and bankCode!=''" >
+		   AND  BANK_CODE=#{bankCode,jdbcType=VARCHAR}
+	</if>
+    
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE BCI_BANK_HEAD_CFG
+    <set >
+    		<if test="headConfigId != null and headConfigId!=''" >
+		    	HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="headConfigDesc != null and headConfigDesc!=''" >
+		    	HEAD_CONFIG_DESC=#{headConfigDesc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="headConfigContent != null and headConfigContent!=''" >
+		    	HEAD_CONFIG_CONTENT=#{headConfigContent,jdbcType=CLOB},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	BANK_CODE=#{bankCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="status != null and status!=''" >
+		    	STATUS=#{status,jdbcType=CHAR},
+		     </if>
+    		<if test="configVersion != null and configVersion!=''" >
+		    	CONFIG_VERSION=#{configVersion,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE BCI_BANK_HEAD_CFG
+    <set >
+    		<if test="headConfigId != null and headConfigId!=''" >
+		    	HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="headConfigDesc != null and headConfigDesc!=''" >
+		    	HEAD_CONFIG_DESC=#{headConfigDesc,jdbcType=VARCHAR},
+		     </if>
+    		<if test="headConfigContent != null and headConfigContent!=''" >
+		    	HEAD_CONFIG_CONTENT=#{headConfigContent,jdbcType=CLOB},
+		     </if>
+    		<if test="bankCode != null and bankCode!=''" >
+		    	BANK_CODE=#{bankCode,jdbcType=VARCHAR},
+		     </if>
+    		<if test="status != null and status!=''" >
+		    	STATUS=#{status,jdbcType=CHAR},
+		     </if>
+    		<if test="configVersion != null and configVersion!=''" >
+		    	CONFIG_VERSION=#{configVersion,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdBy != null and createdBy!=''" >
+		    	CREATED_BY=#{createdBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=VARCHAR},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE}
+		     </if>
+    </set>
+    WHERE
+   		 HEAD_CONFIG_ID=#{headConfigId,jdbcType=DECIMAL} 
+  </update>
+  
+  
+  <select id="getBankTranHeadConfig" resultMap="BaseResultMap" parameterType="map">
+  		 SELECT 
+   		HEAD_CONFIG_ID, 
+  		HEAD_CONFIG_DESC, 
+  		BANK_CODE, 
+  		STATUS, 
+  		CONFIG_VERSION, 
+  		CREATED_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE 
+    FROM BCI_BANK_HEAD_CFG
+    WHERE 
+   		 BANK_CODE=#{bankCode,jdbcType=VARCHAR} 
+  </select>
+  
+</mapper> 

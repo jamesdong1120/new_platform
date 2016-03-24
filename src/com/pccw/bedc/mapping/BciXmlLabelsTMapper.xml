@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.bedc.dao.BciXmlLabelsTMapper">
+<resultMap id="BaseResultMap" type="com.pccw.bedc.model.BciXmlLabelsT">
+   <id column="XML_LABEL_ID" jdbcType="DECIMAL" property="xmlLabelId" />
+   <id column="XML_LABEL_NAME" jdbcType="VARCHAR" property="xmlLabelName" />
+   <id column="XML_LABEL_SEQ" jdbcType="VARCHAR" property="xmlLabelSeq" />
+   <id column="XML_LABEL_TYPE" jdbcType="VARCHAR" property="xmlLabelType" />
+   <id column="IS_LEAF" jdbcType="CHAR" property="isLeaf" />
+   <id column="XML_LABEL_VALUE" jdbcType="VARCHAR" property="xmlLabelValue" />
+   <id column="PARENT_XML_LABEL_ID" jdbcType="DECIMAL" property="parentXmlLabelId" />
+   <id column="DATA_SOURCE_TYPE" jdbcType="VARCHAR" property="dataSourceType" />
+   <id column="ENABLED_FLAG" jdbcType="VARCHAR" property="enabledFlag" />
+   <id column="START_DATE" jdbcType="DATE" property="startDate" />
+   <id column="END_DATE" jdbcType="DATE" property="endDate" />
+   <id column="CREATE_BY" jdbcType="DECIMAL" property="createBy" />
+   <id column="CREATED_DATE" jdbcType="DATE" property="createdDate" />
+   <id column="LAST_UPDATED_BY" jdbcType="DECIMAL" property="lastUpdatedBy" />
+   <id column="LAST_UPDATED_DATE" jdbcType="DATE" property="lastUpdatedDate" />
+   <id column="XML_FILE_ID" jdbcType="DECIMAL" property="xmlFileId" />
+   <id column="DATA_SOURCE_ID" jdbcType="DECIMAL" property="dataSourceId" />
+   <id column="XML_LABEL_LEVEL" jdbcType="VARCHAR" property="xmlLabelLevel" />
+</resultMap>
+
+ <sql id="Base_Column_List">
+  		XML_LABEL_ID, 
+  		XML_LABEL_NAME, 
+  		XML_LABEL_SEQ, 
+  		XML_LABEL_TYPE, 
+  		IS_LEAF, 
+  		XML_LABEL_VALUE, 
+  		PARENT_XML_LABEL_ID, 
+  		DATA_SOURCE_TYPE, 
+  		ENABLED_FLAG, 
+  		START_DATE, 
+  		END_DATE, 
+  		CREATE_BY, 
+  		CREATED_DATE, 
+  		LAST_UPDATED_BY, 
+  		LAST_UPDATED_DATE, 
+  		XML_FILE_ID, 
+  		DATA_SOURCE_ID, 
+  		XML_LABEL_LEVEL 
+  </sql>
+  <!-- 根据主键删除-->
+ <delete id="deleteByPrimaryKey" parameterType="com.pccw.bedc.model.BciXmlLabelsT">
+    DELETE FROM BCI_XML_LABELS_T
+    WHERE 
+   		 XML_LABEL_ID=#{xmlLabelId,jdbcType=DECIMAL} 
+  </delete>
+  
+  <!--插入操作-->
+  <insert id="insert" parameterType="map">
+   	insert into BCI_XML_LABELS_T (
+	     XML_LABEL_ID,
+	     XML_LABEL_NAME,
+	     XML_LABEL_SEQ,
+	     XML_LABEL_TYPE,
+	     IS_LEAF,
+	     XML_LABEL_VALUE,
+	     PARENT_XML_LABEL_ID,
+	     DATA_SOURCE_TYPE,
+	     ENABLED_FLAG,
+	     START_DATE,
+	     END_DATE,
+	     CREATE_BY,
+	     CREATED_DATE,
+	     LAST_UPDATED_BY,
+	     LAST_UPDATED_DATE,
+	     XML_FILE_ID,
+	     DATA_SOURCE_ID,
+	     XML_LABEL_LEVEL
+		   )values (
+		     #{xmlLabelId,jdbcType=DECIMAL},
+		     #{xmlLabelName,jdbcType=VARCHAR},
+		     #{xmlLabelSeq,jdbcType=VARCHAR},
+		     #{xmlLabelType,jdbcType=VARCHAR},
+		     #{isLeaf,jdbcType=CHAR},
+		     #{xmlLabelValue,jdbcType=VARCHAR},
+		     #{parentXmlLabelId,jdbcType=DECIMAL},
+		     #{dataSourceType,jdbcType=VARCHAR},
+		     #{enabledFlag,jdbcType=VARCHAR},
+		     #{startDate,jdbcType=DATE},
+		     #{endDate,jdbcType=DATE},
+		     #{createBy,jdbcType=DECIMAL},
+		     #{createdDate,jdbcType=DATE},
+		     #{lastUpdatedBy,jdbcType=DECIMAL},
+		     #{lastUpdatedDate,jdbcType=DATE},
+		     #{xmlFileId,jdbcType=DECIMAL},
+		     #{dataSourceId,jdbcType=DECIMAL},
+		     #{xmlLabelLevel,jdbcType=VARCHAR}
+	   )
+	</insert>
+
+ <!--选择性插入操作-->
+<insert id="insertSelective" parameterType="map">
+   INSERT INTO BCI_XML_LABELS_T
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+  			<if test="xmlLabelId != null and xmlLabelId!=''" >
+      			 XML_LABEL_ID,
+      		</if>
+  			<if test="xmlLabelName != null and xmlLabelName!=''" >
+      			 XML_LABEL_NAME,
+      		</if>
+  			<if test="xmlLabelSeq != null and xmlLabelSeq!=''" >
+      			 XML_LABEL_SEQ,
+      		</if>
+  			<if test="xmlLabelType != null and xmlLabelType!=''" >
+      			 XML_LABEL_TYPE,
+      		</if>
+  			<if test="isLeaf != null and isLeaf!=''" >
+      			 IS_LEAF,
+      		</if>
+  			<if test="xmlLabelValue != null and xmlLabelValue!=''" >
+      			 XML_LABEL_VALUE,
+      		</if>
+  			<if test="parentXmlLabelId != null and parentXmlLabelId!=''" >
+      			 PARENT_XML_LABEL_ID,
+      		</if>
+  			<if test="dataSourceType != null and dataSourceType!=''" >
+      			 DATA_SOURCE_TYPE,
+      		</if>
+  			<if test="enabledFlag != null and enabledFlag!=''" >
+      			 ENABLED_FLAG,
+      		</if>
+  			<if test="startDate != null and startDate!=''" >
+      			 START_DATE,
+      		</if>
+  			<if test="endDate != null and endDate!=''" >
+      			 END_DATE,
+      		</if>
+  			<if test="createBy != null and createBy!=''" >
+      			 CREATE_BY,
+      		</if>
+  			<if test="createdDate != null and createdDate!=''" >
+      			 CREATED_DATE,
+      		</if>
+  			<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+      			 LAST_UPDATED_BY,
+      		</if>
+  			<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+      			 LAST_UPDATED_DATE,
+      		</if>
+  			<if test="xmlFileId != null and xmlFileId!=''" >
+      			 XML_FILE_ID,
+      		</if>
+  			<if test="dataSourceId != null and dataSourceId!=''" >
+      			 DATA_SOURCE_ID,
+      		</if>
+  			<if test="xmlLabelLevel != null and xmlLabelLevel!=''" >
+      			 XML_LABEL_LEVEL
+      		</if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+    		<if test="xmlLabelId != null and xmlLabelId!=''" >
+		    	 #{xmlLabelId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="xmlLabelName != null and xmlLabelName!=''" >
+		    	 #{xmlLabelName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="xmlLabelSeq != null and xmlLabelSeq!=''" >
+		    	 #{xmlLabelSeq,jdbcType=VARCHAR},
+		     </if>
+    		<if test="xmlLabelType != null and xmlLabelType!=''" >
+		    	 #{xmlLabelType,jdbcType=VARCHAR},
+		     </if>
+    		<if test="isLeaf != null and isLeaf!=''" >
+		    	 #{isLeaf,jdbcType=CHAR},
+		     </if>
+    		<if test="xmlLabelValue != null and xmlLabelValue!=''" >
+		    	 #{xmlLabelValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="parentXmlLabelId != null and parentXmlLabelId!=''" >
+		    	 #{parentXmlLabelId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dataSourceType != null and dataSourceType!=''" >
+		    	 #{dataSourceType,jdbcType=VARCHAR},
+		     </if>
+    		<if test="enabledFlag != null and enabledFlag!=''" >
+		    	 #{enabledFlag,jdbcType=VARCHAR},
+		     </if>
+    		<if test="startDate != null and startDate!=''" >
+		    	 #{startDate,jdbcType=DATE},
+		     </if>
+    		<if test="endDate != null and endDate!=''" >
+		    	 #{endDate,jdbcType=DATE},
+		     </if>
+    		<if test="createBy != null and createBy!=''" >
+		    	 #{createBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	 #{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	 #{lastUpdatedBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	 #{lastUpdatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="xmlFileId != null and xmlFileId!=''" >
+		    	 #{xmlFileId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dataSourceId != null and dataSourceId!=''" >
+		    	 #{dataSourceId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="xmlLabelLevel != null and xmlLabelLevel!=''" >
+		    	 #{xmlLabelLevel,jdbcType=VARCHAR}
+		     </if>
+    </trim>
+  </insert>
+  
+  
+   <!-- 根据主键查询 -->
+<select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM BCI_XML_LABELS_T
+    WHERE 
+   		 XML_LABEL_ID=#{xmlLabelId,jdbcType=DECIMAL} 
+  </select>
+  
+    <select id="getPageData" parameterType="map" resultMap="BaseResultMap">
+  	SELECT <include refid="Base_Column_List" />
+  	FROM(
+  	SELECT 
+    <include refid="Base_Column_List" />
+    ,ROWNUM RN
+    FROM BCI_XML_LABELS_T
+    WHERE 1=1
+    )
+    WHERE  
+    1=1
+  	<if test="start != null and start!=''" >
+    <![CDATA[ AND RN>${start} ]]>
+   </if>
+  	<if test="end != null and end!=''" >
+    <![CDATA[ AND RN<=${end}]]>
+   </if>
+    
+  </select>
+  
+  <select id="getPageCount" parameterType="map" resultType="int">
+  	SELECT 
+   	COUNT(1)
+    FROM BCI_XML_LABELS_T
+    WHERE 1=1
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="map" >
+    UPDATE BCI_XML_LABELS_T
+    <set >
+    		<if test="xmlLabelId != null and xmlLabelId!=''" >
+		    	XML_LABEL_ID=#{xmlLabelId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="xmlLabelName != null and xmlLabelName!=''" >
+		    	XML_LABEL_NAME=#{xmlLabelName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="xmlLabelSeq != null and xmlLabelSeq!=''" >
+		    	XML_LABEL_SEQ=#{xmlLabelSeq,jdbcType=VARCHAR},
+		     </if>
+    		<if test="xmlLabelType != null and xmlLabelType!=''" >
+		    	XML_LABEL_TYPE=#{xmlLabelType,jdbcType=VARCHAR},
+		     </if>
+    		<if test="isLeaf != null and isLeaf!=''" >
+		    	IS_LEAF=#{isLeaf,jdbcType=CHAR},
+		     </if>
+    		<if test="xmlLabelValue != null and xmlLabelValue!=''" >
+		    	XML_LABEL_VALUE=#{xmlLabelValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="parentXmlLabelId != null and parentXmlLabelId!=''" >
+		    	PARENT_XML_LABEL_ID=#{parentXmlLabelId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dataSourceType != null and dataSourceType!=''" >
+		    	DATA_SOURCE_TYPE=#{dataSourceType,jdbcType=VARCHAR},
+		     </if>
+    		<if test="enabledFlag != null and enabledFlag!=''" >
+		    	ENABLED_FLAG=#{enabledFlag,jdbcType=VARCHAR},
+		     </if>
+    		<if test="startDate != null and startDate!=''" >
+		    	START_DATE=#{startDate,jdbcType=DATE},
+		     </if>
+    		<if test="endDate != null and endDate!=''" >
+		    	END_DATE=#{endDate,jdbcType=DATE},
+		     </if>
+    		<if test="createBy != null and createBy!=''" >
+		    	CREATE_BY=#{createBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="xmlFileId != null and xmlFileId!=''" >
+		    	XML_FILE_ID=#{xmlFileId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dataSourceId != null and dataSourceId!=''" >
+		    	DATA_SOURCE_ID=#{dataSourceId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="xmlLabelLevel != null and xmlLabelLevel!=''" >
+		    	XML_LABEL_LEVEL=#{xmlLabelLevel,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 XML_LABEL_ID=#{xmlLabelId,jdbcType=DECIMAL} 
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="map" >
+    UPDATE BCI_XML_LABELS_T
+    <set >
+    		<if test="xmlLabelId != null and xmlLabelId!=''" >
+		    	XML_LABEL_ID=#{xmlLabelId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="xmlLabelName != null and xmlLabelName!=''" >
+		    	XML_LABEL_NAME=#{xmlLabelName,jdbcType=VARCHAR},
+		     </if>
+    		<if test="xmlLabelSeq != null and xmlLabelSeq!=''" >
+		    	XML_LABEL_SEQ=#{xmlLabelSeq,jdbcType=VARCHAR},
+		     </if>
+    		<if test="xmlLabelType != null and xmlLabelType!=''" >
+		    	XML_LABEL_TYPE=#{xmlLabelType,jdbcType=VARCHAR},
+		     </if>
+    		<if test="isLeaf != null and isLeaf!=''" >
+		    	IS_LEAF=#{isLeaf,jdbcType=CHAR},
+		     </if>
+    		<if test="xmlLabelValue != null and xmlLabelValue!=''" >
+		    	XML_LABEL_VALUE=#{xmlLabelValue,jdbcType=VARCHAR},
+		     </if>
+    		<if test="parentXmlLabelId != null and parentXmlLabelId!=''" >
+		    	PARENT_XML_LABEL_ID=#{parentXmlLabelId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dataSourceType != null and dataSourceType!=''" >
+		    	DATA_SOURCE_TYPE=#{dataSourceType,jdbcType=VARCHAR},
+		     </if>
+    		<if test="enabledFlag != null and enabledFlag!=''" >
+		    	ENABLED_FLAG=#{enabledFlag,jdbcType=VARCHAR},
+		     </if>
+    		<if test="startDate != null and startDate!=''" >
+		    	START_DATE=#{startDate,jdbcType=DATE},
+		     </if>
+    		<if test="endDate != null and endDate!=''" >
+		    	END_DATE=#{endDate,jdbcType=DATE},
+		     </if>
+    		<if test="createBy != null and createBy!=''" >
+		    	CREATE_BY=#{createBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="createdDate != null and createdDate!=''" >
+		    	CREATED_DATE=#{createdDate,jdbcType=DATE},
+		     </if>
+    		<if test="lastUpdatedBy != null and lastUpdatedBy!=''" >
+		    	LAST_UPDATED_BY=#{lastUpdatedBy,jdbcType=DECIMAL},
+		     </if>
+    		<if test="lastUpdatedDate != null and lastUpdatedDate!=''" >
+		    	LAST_UPDATED_DATE=#{lastUpdatedDate,jdbcType=DATE},
+		     </if>
+    		<if test="xmlFileId != null and xmlFileId!=''" >
+		    	XML_FILE_ID=#{xmlFileId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="dataSourceId != null and dataSourceId!=''" >
+		    	DATA_SOURCE_ID=#{dataSourceId,jdbcType=DECIMAL},
+		     </if>
+    		<if test="xmlLabelLevel != null and xmlLabelLevel!=''" >
+		    	XML_LABEL_LEVEL=#{xmlLabelLevel,jdbcType=VARCHAR}
+		     </if>
+    </set>
+    WHERE
+   		 XML_LABEL_ID=#{xmlLabelId,jdbcType=DECIMAL} 
+  </update>
+  
+</mapper> 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.pccw.system.dao.GenKeyMapper">
+
+	<select id="genKey" resultType="java.lang.Integer" parameterType="map">
+		SELECT NVL(MAX(${primaryKey}),0)+1 FROM ${tableName}
+	</select>
+	
+	<select id="getNextValueBySeq" resultType="java.lang.Integer" parameterType="map">
+		SELECT ${seqName}.nextval FROM DUAL
+	</select>
+</mapper> 
